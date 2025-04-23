@@ -1,25 +1,22 @@
 package com.moviles.vinilos.network
 
 import android.content.Context
-import android.util.Log
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.VolleyError
-import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.moviles.vinilos.models.Album
 import org.json.JSONArray
-import org.json.JSONObject
 
-class NetworkServiceAdapter constructor(context: Context) {
+class ServiceAdapter(context: Context) {
     companion object{
         const val BASE_URL= "https://backvynils-q6yc.onrender.com/"
-        var instance: NetworkServiceAdapter? = null
+        private var instance: ServiceAdapter? = null
         fun getInstance(context: Context) =
             instance ?: synchronized(this) {
-                instance ?: NetworkServiceAdapter(context).also {
+                instance ?: ServiceAdapter(context).also {
                     instance = it
                 }
             }
@@ -30,7 +27,7 @@ class NetworkServiceAdapter constructor(context: Context) {
     }
     fun getAlbums(onComplete:(resp:List<Album>)->Unit, onError: (error:VolleyError)->Unit){
         requestQueue.add(getRequest("albums",
-            Response.Listener<String> { response ->
+            { response ->
                 val resp = JSONArray(response)
                 val list = mutableListOf<Album>()
                 for (i in 0 until resp.length()) {
@@ -39,7 +36,7 @@ class NetworkServiceAdapter constructor(context: Context) {
                 }
                 onComplete(list)
             },
-            Response.ErrorListener {
+            {
                 onError(it)
             }))
     }
