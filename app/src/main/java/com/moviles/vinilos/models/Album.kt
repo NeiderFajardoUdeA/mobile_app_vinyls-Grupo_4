@@ -1,4 +1,4 @@
-package com.vinilos.models
+package com.moviles.vinilos.models
 
 data class Album (
     val albumId:Int,
