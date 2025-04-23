@@ -37,6 +37,9 @@ android {
     buildFeatures {
         compose = true
     }
+    dataBinding {
+        enable = true
+    }
 }
 
 dependencies {
@@ -49,6 +52,10 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.play.services.ads)
+    implementation(libs.material)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
