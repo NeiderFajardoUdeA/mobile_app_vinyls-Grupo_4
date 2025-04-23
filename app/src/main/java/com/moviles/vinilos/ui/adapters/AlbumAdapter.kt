@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.moviles.vinilos.R
 import com.moviles.vinilos.databinding.AlbumItemBinding
 import com.moviles.vinilos.models.Album
+import com.squareup.picasso.Picasso
 
 class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>(){
 
@@ -38,25 +39,27 @@ class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>(){
         return albums.size
     }
 
-    //@BindingAdapter("imageUrl")
-    //fun bindImageFromUrl(view: ImageView, imageUrl: String?) {
-      //  if (!imageUrl.isNullOrEmpty()) {
-        //    Glide.with(view.context)
-          //      .load(imageUrl)
-            //    .placeholder(R.drawable.ic_album_placeholder)
-              //  .error(R.drawable.ic_album_placeholder)
-                //.diskCacheStrategy(DiskCacheStrategy.ALL)
-                //.into(view)
-        //}
-    //}
-
     class AlbumViewHolder(val viewDataBinding: AlbumItemBinding) :
         RecyclerView.ViewHolder(viewDataBinding.root) {
         companion object {
             @LayoutRes
             val LAYOUT = R.layout.album_item
+
+            @JvmStatic
+            @BindingAdapter("imageUrl")
+            fun ImageView.loadImage(url: String?) {
+                if (!url.isNullOrEmpty()) {
+                    Picasso.get()
+                        .load(url)
+                        .placeholder(R.drawable.ic_album_placeholder)
+                        .error(R.drawable.ic_album_placeholder)
+                        .fit()
+                        .centerCrop()
+                        .into(this)
+                } else {
+                    setImageResource(R.drawable.ic_album_placeholder)
+                }
+            }
         }
     }
-
-
 }

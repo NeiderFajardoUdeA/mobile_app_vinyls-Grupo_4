@@ -15,6 +15,7 @@ material = "1.12.0"
 navigationFragment = "2.8.9"
 navigationFragmentKtx = "2.8.9"
 navigationUiKtx = "2.8.9"
+picasso = "2.71828"
 volley = "1.2.1"
 databindingRuntime = "8.9.2"
 
@@ -41,6 +42,7 @@ androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 material = { module = "com.google.android.material:material", version.ref = "material" }
 androidx-navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment", version.ref = "navigationFragment" }
+picasso = { module = "com.squareup.picasso:picasso", version.ref = "picasso" }
 volley = { group = "com.android.volley", name = "volley", version.ref = "volley" }
 androidx-databinding-runtime = { group = "androidx.databinding", name = "databinding-runtime", version.ref = "databindingRuntime" }
 
@@ -49,4 +51,5 @@ android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 navigation-safe-args = { id = "androidx.navigation.safeargs.kotlin", version = "2.8.9" }
+kotlin-kapt = { id = "org.jetbrains.kotlin.kapt" }
 
