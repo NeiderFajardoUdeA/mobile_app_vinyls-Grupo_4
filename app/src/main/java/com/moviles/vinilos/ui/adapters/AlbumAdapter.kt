@@ -2,7 +2,9 @@ package com.moviles.vinilos.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.annotation.LayoutRes
+import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.moviles.vinilos.R
@@ -30,17 +32,23 @@ class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>(){
         holder.viewDataBinding.also {
             it.album = albums[position]
         }
-        holder.viewDataBinding.root.setOnClickListener {
-            //val action = AlbumFragmentDirections.actionAlbumFragmentToCommentFragment(albums[position].albumId)
-            // Navigate using that action
-            //holder.viewDataBinding.root.findNavController().navigate(action)
-        }
     }
 
     override fun getItemCount(): Int {
         return albums.size
     }
 
+    //@BindingAdapter("imageUrl")
+    //fun bindImageFromUrl(view: ImageView, imageUrl: String?) {
+      //  if (!imageUrl.isNullOrEmpty()) {
+        //    Glide.with(view.context)
+          //      .load(imageUrl)
+            //    .placeholder(R.drawable.ic_album_placeholder)
+              //  .error(R.drawable.ic_album_placeholder)
+                //.diskCacheStrategy(DiskCacheStrategy.ALL)
+                //.into(view)
+        //}
+    //}
 
     class AlbumViewHolder(val viewDataBinding: AlbumItemBinding) :
         RecyclerView.ViewHolder(viewDataBinding.root) {
