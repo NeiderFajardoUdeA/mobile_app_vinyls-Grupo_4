@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">vinilos</string>
+    <string name="boton_menu_albums">Álbumes</string>
+    <string name="titulo_home">VINILOS</string>
+    <string name="title_albums">Albumes</string>
+    <string name="hinted_search_text_album">Buscar álbumes</string>
 </resources>

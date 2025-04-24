@@ -1,6 +1,6 @@
 package com.moviles.vinilos.models
 
-data class Album(
+data class Album (
     val albumId:Int,
     val name:String,
     val cover:String,
