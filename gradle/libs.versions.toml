@@ -16,6 +16,7 @@ navigationFragment = "2.8.9"
 navigationFragmentKtx = "2.8.9"
 navigationUiKtx = "2.8.9"
 picasso = "2.71828"
+runner = "1.0.2"
 volley = "1.2.1"
 databindingRuntime = "8.9.2"
 
@@ -43,6 +44,7 @@ androidx-material3 = { group = "androidx.compose.material3", name = "material3" 
 material = { module = "com.google.android.material:material", version.ref = "material" }
 androidx-navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment", version.ref = "navigationFragment" }
 picasso = { module = "com.squareup.picasso:picasso", version.ref = "picasso" }
+runner = { module = "com.android.support.test:runner", version.ref = "runner" }
 volley = { group = "com.android.volley", name = "volley", version.ref = "volley" }
 androidx-databinding-runtime = { group = "androidx.databinding", name = "databinding-runtime", version.ref = "databindingRuntime" }
 
