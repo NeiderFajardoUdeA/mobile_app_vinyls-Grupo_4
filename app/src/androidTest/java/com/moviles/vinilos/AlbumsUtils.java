@@ -5,6 +5,8 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withParent;
+import static androidx.test.espresso.matcher.ViewMatchers.withParentIndex;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import androidx.test.espresso.ViewInteraction;
@@ -29,5 +31,9 @@ public class AlbumsUtils {
 
     public static void validamosImagenHome() {
         onView(allOf(withId(R.id.logoImage), isDisplayed())).check(matches(isDisplayed()));
+    }
+
+    public static void verTituloAlbum() {
+        onView(allOf(withId(R.id.albumTitle), withParent(withParentIndex(0))));
     }
 }

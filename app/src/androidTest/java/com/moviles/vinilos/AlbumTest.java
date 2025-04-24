@@ -16,7 +16,7 @@ public class AlbumTest {
     public ActivityScenarioRule<MainActivity> mActivityTestRule = new ActivityScenarioRule<>(MainActivity.class);
 
     @Test
-    public void verListaAlbumes() {
+    public void verTituloVistaAlbumes() {
         //Given que estoy en el home de la app
         ViewInteraction albumesBtn = AlbumsUtils.verBtnAlbums();
 
@@ -28,15 +28,12 @@ public class AlbumTest {
     }
 
     @Test
-    public void verListaAlbumesYVolverHome() {
+    public void verTituloVistaAlbumesYVolverHome() {
         //Given que estoy en el home de la app
         ViewInteraction albumesBtn = AlbumsUtils.verBtnAlbums();
 
         //And da clic en el boton "Albumes"
         AlbumsUtils.clickBtn(albumesBtn);
-
-        //And entra al listado de albumes ve el titulo de la vista
-        AlbumsUtils.validamosTituloVistaAlbumes();
 
         //When da clic en el boton de menu
         ViewInteraction menuBtn = AlbumsUtils.verBtnMenu();
@@ -46,5 +43,24 @@ public class AlbumTest {
 
         //Then deberia verse el la imagen del home
         AlbumsUtils.validamosImagenHome();
+    }
+
+    @Test
+    public void verListaAlbumes() {
+        //Given que estoy en el home de la app
+        ViewInteraction albumesBtn = AlbumsUtils.verBtnAlbums();
+
+        //When da clic en el boton "Albumes"
+        AlbumsUtils.clickBtn(albumesBtn);
+
+        //Espera asincrona para la carga de datos
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //Then se ve la lista de albumes en la vista
+        AlbumsUtils.verTituloAlbum();
     }
 }
