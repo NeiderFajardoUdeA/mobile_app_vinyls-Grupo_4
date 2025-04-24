@@ -3,25 +3,25 @@ package com.moviles.vinilos.viewmodels
 import android.app.Application
 import androidx.lifecycle.*
 import com.moviles.vinilos.models.Album
-import com.moviles.vinilos.network.ServiceAdapter
 import com.moviles.vinilos.repositories.AlbumRepository
 
-class AlbumViewModel(application: Application) :  AndroidViewModel(application) {
+class AlbumViewModel(application: Application) : AndroidViewModel(application) {
 
     private val albumsRepository = AlbumRepository(application)
 
-    private val _albums = MutableLiveData<List<Album>>()
+    //Lista completa
+    private var allAlbums: List<Album> = emptyList()
 
+    //LiveData filtrada que observa la UI
+    private val _albums = MutableLiveData<List<Album>>()
     val albums: LiveData<List<Album>>
         get() = _albums
 
-    private var _eventNetworkError = MutableLiveData<Boolean>(false)
-
+    private val _eventNetworkError = MutableLiveData(false)
     val eventNetworkError: LiveData<Boolean>
         get() = _eventNetworkError
 
-    private var _isNetworkErrorShown = MutableLiveData<Boolean>(false)
-
+    private val _isNetworkErrorShown = MutableLiveData(false)
     val isNetworkErrorShown: LiveData<Boolean>
         get() = _isNetworkErrorShown
 
@@ -30,13 +30,26 @@ class AlbumViewModel(application: Application) :  AndroidViewModel(application) 
     }
 
     private fun refreshDataFromNetwork() {
-        albumsRepository.refreshData({
-            _albums.postValue(it)
+        albumsRepository.refreshData({ list ->
+            //Guardamos lista completa y actualizamos LiveData
+            allAlbums = list
+            _albums.value = list
             _eventNetworkError.value = false
             _isNetworkErrorShown.value = false
-        },{
+        }, {
             _eventNetworkError.value = true
         })
+    }
+
+    fun searchAlbums(query: String) {
+        if (query.isBlank()) {
+            //Si no hay texto en la busqueda, devuelve todo
+            _albums.value = allAlbums
+        } else {
+            _albums.value = allAlbums.filter {
+                it.name.contains(query, ignoreCase = true)
+            }
+        }
     }
 
     fun onNetworkErrorShown() {
