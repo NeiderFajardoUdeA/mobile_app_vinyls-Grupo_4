@@ -7,12 +7,13 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.moviles.vinilos.OnAlbumClickListener
 import com.moviles.vinilos.R
 import com.moviles.vinilos.databinding.AlbumItemBinding
 import com.moviles.vinilos.models.Album
 import com.squareup.picasso.Picasso
 
-class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>(){
+class AlbumsAdapter(private val clickListener: OnAlbumClickListener) : RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>(){
 
     var albums :List<Album> = emptyList()
         set(value) {
@@ -33,6 +34,7 @@ class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>(){
         holder.viewDataBinding.also {
             it.album = albums[position]
         }
+        holder.bind(albums[position], clickListener)
     }
 
     override fun getItemCount(): Int {
@@ -60,6 +62,13 @@ class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>(){
                     setImageResource(R.drawable.ic_album_placeholder)
                 }
             }
+        }
+        fun bind(album: Album, clickListener: OnAlbumClickListener) {
+            viewDataBinding.album = album
+            viewDataBinding.cardViewAlbum.setOnClickListener {
+                clickListener.onAlbumClick(album.albumId)
+            }
+            viewDataBinding.executePendingBindings()
         }
     }
 }

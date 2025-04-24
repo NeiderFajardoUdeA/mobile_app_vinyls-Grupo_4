@@ -1,6 +1,7 @@
 package com.moviles.vinilos.viewmodels
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
 import com.moviles.vinilos.models.Album
 import com.moviles.vinilos.repositories.AlbumRepository
@@ -50,6 +51,10 @@ class AlbumViewModel(application: Application) : AndroidViewModel(application) {
                 it.name.contains(query, ignoreCase = true)
             }
         }
+    }
+
+   fun getAlbumById(albumId: Int): Album? {
+        return albums.value?.get(albumId)
     }
 
     fun onNetworkErrorShown() {

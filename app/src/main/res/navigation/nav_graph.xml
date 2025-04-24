@@ -12,8 +12,16 @@
     <fragment
         android:id="@+id/albumFragment"
         android:name="com.moviles.vinilos.ui.AlbumFragment"
-        android:label="Álbumes" />
+        android:label="Álbumes"/>
 
+    <fragment
+        android:id="@+id/albumDetailFragment"
+        android:name="com.moviles.vinilos.ui.AlbumDetailFragment"
+        android:label="Detalles del Álbum" >
+        <argument
+            android:name="albumId"
+            app:argType="integer" />
+    </fragment>
     <action
         android:id="@+id/action_homeFragment_to_albumFragment"
         app:destination="@id/albumFragment" />
@@ -21,4 +29,8 @@
     <action
         android:id="@+id/action_albumFragment_to_homeFragment"
         app:destination="@id/homeFragment" />
+
+    <action
+        android:id="@+id/action_albumFragment_to_albumDetailFragment"
+        app:destination="@id/albumDetailFragment" />
 </navigation>
