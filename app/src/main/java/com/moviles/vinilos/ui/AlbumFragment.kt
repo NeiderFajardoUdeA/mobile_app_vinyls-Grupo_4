@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.moviles.vinilos.databinding.AlbumFragmentBinding
 import com.moviles.vinilos.ui.adapters.AlbumsAdapter
@@ -27,6 +29,9 @@ class AlbumFragment : Fragment() {
     ): View {
         _binding = AlbumFragmentBinding.inflate(inflater, container, false)
         viewModelAdapter = AlbumsAdapter()
+
+
+
         return binding.root
     }
 
@@ -41,6 +46,10 @@ class AlbumFragment : Fragment() {
         binding.searchInput.addTextChangedListener { editable ->
             val query = editable?.toString().orEmpty()
             viewModel.searchAlbums(query)
+        }
+
+        binding.menuIcon.setOnClickListener{
+            findNavController().navigate(R.id.action_albumFragment_to_homeFragment)
         }
     }
 
