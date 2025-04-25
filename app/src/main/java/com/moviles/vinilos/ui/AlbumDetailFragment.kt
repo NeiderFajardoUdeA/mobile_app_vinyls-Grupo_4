@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.moviles.vinilos.databinding.AlbumDetailBinding
+import android.net.Uri
 
 import com.moviles.vinilos.viewmodels.AlbumViewModel
 
@@ -38,8 +39,8 @@ class AlbumDetailFragment : Fragment() {
             val albumId = args.albumId
             val album = albumList.find { it.albumId == albumId }
             album?.let {
-                binding.albumDetailTitle.text = it.name
-                binding.albumDetailDescription.text = it.description
+                binding.album = it
+                binding.albumReleaseYear.text = it.releaseDate.substring(0, 4)
             }
         }
     }
