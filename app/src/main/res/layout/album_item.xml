@@ -52,6 +52,7 @@
                 android:padding="8dp">
 
                 <ImageView
+                    android:id="@+id/coverImage"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     app:imageUrl="@{album.cover}"
