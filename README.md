@@ -4,3 +4,5 @@
 - Daniel Oicatá
 - Juan Camilo Mora
 - Neider Alejandro Fajardo
+
+Pasos para poder ejecutar este proyecto:
