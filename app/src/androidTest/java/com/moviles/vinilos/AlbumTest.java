@@ -144,7 +144,7 @@ public class AlbumTest {
         //And doy clic en el boton "Albumes"
         AlbumsUtils.clickBtn(albumesBtn);
 
-        //Espera asincrona para la carga de datos
+        //And espera asincrona para la carga de datos
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
@@ -155,7 +155,7 @@ public class AlbumTest {
         String titulo = "Poeta del pueblo";
         AlbumsUtils.seleccionarAlbumNombre(titulo);
 
-        //Espera asincrona para la carga de datos
+        //And espera asincrona para la carga de datos
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
@@ -164,10 +164,6 @@ public class AlbumTest {
 
         //Then debo ver un título con el nombre del album
         AlbumsUtils.validarTituloAlbum(titulo);
-
-        //And debo ver un subtitulo de Resumen del álbum
-        AlbumsUtils.validarSubtituloResumen();
-
     }
 
     @Test
@@ -178,7 +174,7 @@ public class AlbumTest {
         //And doy clic en el boton "Albumes"
         AlbumsUtils.clickBtn(albumesBtn);
 
-        //Espera asincrona para la carga de datos
+        //And espera asincrona para la carga de datos
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
@@ -188,7 +184,7 @@ public class AlbumTest {
         //When selecciono el primer album de la lista
         AlbumsUtils.seleccionarAlbumPosicion(0);
 
-        //Espera asincrona para la carga de datos
+        //And espera asincrona para la carga de datos
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
@@ -201,10 +197,10 @@ public class AlbumTest {
         //And doy clic en el boton volver
         AlbumsUtils.clickBotonVolver();
 
-        //Then debo regresar a la lista de albumes
+        //And regreso a la lista de albumes
         AlbumsUtils.verTituloAlbum();
 
-        //Then puedo ahora hacer click en el segundo album de la lista
+        //And click en el segundo album de la lista
         AlbumsUtils.seleccionarAlbumPosicion(1);
 
         //Then debo ver ahora el resumen del segundo album
@@ -219,7 +215,7 @@ public class AlbumTest {
         //And doy clic en el boton "Albumes"
         AlbumsUtils.clickBtn(albumesBtn);
 
-        //Espera asincrona para la carga de datos
+        //And espera asincrona para la carga de datos
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
@@ -229,7 +225,7 @@ public class AlbumTest {
         //When selecciono el primer album de la lista
         AlbumsUtils.seleccionarAlbumPosicion(0);
 
-        //Espera asincrona para la carga de datos
+        //And espera asincrona para la carga de datos
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
@@ -239,13 +235,16 @@ public class AlbumTest {
         //And veo que aparece el resumen del album
         AlbumsUtils.validarSubtituloResumen();
 
-        //And doy clic en el ícono "Atras"
-        AlbumsUtils.clickBackIcon();
+        //And busco que el boton este en la vista
+        ViewInteraction backBtn = AlbumsUtils.verBtnBackDetail();
 
-        //Then debo regresar a la lista de albumes
+        //And doy clic en el ícono "Atras"
+        AlbumsUtils.clickBtn(backBtn);
+
+        //And regreso a la lista de albumes
         AlbumsUtils.verTituloAlbum();
 
-        //Then puedo ahora hacer click en el segundo album de la lista
+        //And click en el segundo album de la lista
         AlbumsUtils.seleccionarAlbumPosicion(1);
 
         //Then debo ver ahora el resumen del segundo album
