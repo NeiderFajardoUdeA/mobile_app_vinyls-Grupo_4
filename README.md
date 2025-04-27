@@ -1,63 +1,41 @@
 # **Vinyls Mobile App (Grupo 4)**
 ## Integrantes
-- Daniel Andrade Suárez
-- Daniel Oicatá
-- Juan Camilo Mora
-- Neider Alejandro Fajardo
+- **Daniel Andrade Suárez**
+- **Daniel Oicatá Hernández**
+- **Juan Camilo Mora**
+- **Neider Alejandro Fajardo**
 
 ## Pasos para ejecutar proyecto localmente:
-
-Aplicación móvil Android creada en **Kotlin** usando **Jetpack Compose**, **ViewBinding**, **DataBinding** y **Navigation Components**.
-
 Repositorio: https://github.com/NeiderFajardoUdeA/mobile_app_vinyls-Grupo_4.git
 
 **Requisitos Previos**
-
-Android Studio **Hedgehog** o superior (recomendado última versión estable).
-JDK 17 instalado (Android Studio ya lo incluye).
-Conexión a Internet para sincronizar dependencias.
-SDK de Android 35 instalado.
+- Git instalado para manejo de repositorios.
+- Android Studio `2024.3.1` o superior (recomendado última versión estable).
+- JDK 17 instalado (Android Studio ya lo incluye).
+- SDK de Android 35 instalado.
 
 **Instalación y Configuración del Proyecto**
 
 **1. Clonar el Repositorio**
 
-Abre la terminal de tu preferencia y ejecuta:
-git clone [https://github.com/NeiderFajardoUdeA/mobile_app_vinyls-](https://github.com/NeiderFajardoUdeA/mobile_app_vinyls-Grupo_4.git) 
-[Grupo_4.git](https://github.com/NeiderFajardoUdeA/mobile_app_vinyls-Grupo_4.git) cd mobile\_app\_vinyls-Grupo\_4
+Desde una terminal de PowerShell ejecutar:
+`git clone https://github.com/NeiderFajardoUdeA/mobile_app_vinyls-Grupo_4.git`
 
-**2. Abrir en Android Studio**
+**2. Sincronizar y Actualizar Gradle**
 
-Abre **Android Studio**.
-Selecciona **"Open"** y navega a la carpeta del proyecto clonado. Espera que Android Studio indexe los archivos.
+Al abrir el proyecto, Android Studio sugieré sincronizar el Gradle automáticamente dando clic en `Sync now`. 
 
-**3. Sincronizar y Actualizar Gradle**
+Si no lo hace, se puede hacer manualmente desde: **File → Sync Project with Gradle Files**.
 
-El proyecto ya está configurado para usar:
+Es recomendable actualizar dependencias o plugins aceptando las sugerencias automáticas.
 
-**Gradle Plugin**: 8.9.1
-
-**Kotlin**: 2.0.21
-
-**SDK Compile**: 35
-
-**Pasos para asegurarte que todo esté actualizado:**
-
-Cuando abras el proyecto, Android Studio te sugerirá sincronizar el Gradle automáticamente. 
-
-Si no lo hace, hazlo manualmente: **File → Sync Project with Gradle Files**.
-
-Si te pide actualizar dependencias o plugins, acepta las sugerencias automáticas.
-
-En caso de fallos: Ve a **File → Project Structure → Project**.
-
-Verifica:
+En caso de fallos: Ir a **File → Project Structure → Project** para verificar la configuración del proyecto:
 
 - Android Gradle Plugin Version: **8.9.1**
 
 - Gradle Version: (Recomendado >= 8.9).
 
-En el módulo app, confirma:
+En el módulo app, confirmar:
 
 - Compile SDK: **35**
 
@@ -67,37 +45,35 @@ En el módulo app, confirma:
 
 **4. Configurar el Emulador Android (SDK 35)**
 
-Para ejecutar la aplicación necesitas un emulador Android con SDK 35:
+Para ejecutar la aplicación se requiere un emulador Android con SDK 35:
 
 **Pasos:**
 
-1\. En Android Studio, abre **Tools → Device Manager**.
+**4.1\.** En Android Studio, abrir **Tools → Device Manager**.
 
-2\. Clic en **Create Device**.
+**4.2\.** Clic en **Create Device**.
 
-3\. Elige un modelo de dispositivo (recomendado: Medium Phone API 35).
+**4.3\.** Elegir un modelo de dispositivo (recomendado: Medium Phone API 35).
 
-4\. En la lista de sistemas, descarga y selecciona:
+**4.4\.** En la lista de sistemas, descargar y seleccionar:
 
-a. **Android API 35** (Android 14).
+- a. **Android API 35** (Android 14).
 
-5\. Finaliza la creación del emulador.
+**4.5\.** Finalizar la creación del emulador.
 
-6\. Asegúrate que esté encendido antes de correr la app.
-
-**Nota:** Si no ves el API 35, instala el SDK: Ve a **Tools → SDK Manager → SDK Platforms → Show Package Details**, y selecciona Android 14 (API 35).
+**4.6\.** Asegurarse que esté encendido antes de correr la app.
 
 **5. Ejecutar la Aplicación**
 
-Con todo configurado: Selecciona el emulador creado en la barra superior de Android Studio. Haz clic en el botón **Run** .
+- Con todo configurado: Seleccionar el emulador creado en la barra superior de Android Studio. Hacer clic en el botón **Run**. Android Studio compilará y desplegará la app en el emulador.
 
-Android Studio compilará y desplegará la app en el emulador.
+- Para las pruebas automatizadas con Espresso, el emulador configurado es suficiente pero en este caso se debe ir al directorio `com.moviles.vinilos(androidTest)`, dar clic derecho en `AlbumTest` y luego `Run 'AlbumTest'`.
 
 **Tecnologías y Librerías Principales**
 
 - **Kotlin**
 
-- **Jetpack Compose** (UI moderna declarativa)
+- **Jetpack Compose**
 
 - **Navigation Component**
 
@@ -105,14 +81,11 @@ Android Studio compilará y desplegará la app en el emulador.
 
 - **Picasso** (carga de imágenes)
 
-- **Volley** (red)
+- **Volley** (BackEnd)
 
 - **JUnit** y **Espresso** (Testing)
 
-**Consejos Ðtiles**
+**Consejos Útiles**
 
-- Si ves errores de dependencias, limpia y reconstruye el proyecto: `./gradlew clean build`
-
-- Si tienes problemas con el emulador, intenta con un **cold boot** o reinicia Android Studio.
-
-- Recomendado usar el **Emulador ARM64** si tu máquina lo soporta, para mayor velocidad.
+- Si hay errores de dependencias, limpiar y reconstruir el proyecto: `./gradlew clean build`
+- Si hay problemas con el emulador, intentar con un **cold boot** o reiniciar Android Studio.
