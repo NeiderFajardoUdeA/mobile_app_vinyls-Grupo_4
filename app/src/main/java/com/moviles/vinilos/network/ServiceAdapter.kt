@@ -13,7 +13,7 @@ import org.json.JSONArray
 class ServiceAdapter(context: Context) {
     companion object{
         //const val BASE_URL= "https://backvynils-q6yc.onrender.com/"
-        const val BASE_URL= "http://ec2-3-86-76-137.compute-1.amazonaws.com:3000/"
+        const val BASE_URL= "http://ec2-54-145-70-243.compute-1.amazonaws.com:3000/"
         private var instance: ServiceAdapter? = null
         fun getInstance(context: Context) =
             instance ?: synchronized(this) {
