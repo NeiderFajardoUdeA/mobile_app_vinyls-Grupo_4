@@ -1,7 +1,5 @@
 package com.moviles.vinilos;
 
-import android.view.View;
-
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.filters.LargeTest;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
@@ -124,7 +122,7 @@ public class AlbumTest {
         AlbumsUtils.clickBtn(barraBusqueda);
 
         //When buscamos un album por un titulo especifico
-        String titulo = "Mi angel";
+        String titulo = "Poeta del pueblo";
         AlbumsUtils.buscarAlbumByTitulo(titulo);
 
         //Espera asincrona para la carga de datos
@@ -136,5 +134,121 @@ public class AlbumTest {
 
         //Then veo su card en pantalla con el titulo buscado
         AlbumsUtils.validarBuscarAlbum(titulo);
+    }
+
+    @Test
+    public void verDetalleAlbum() {
+        //Given que estoy en el home de la app
+        ViewInteraction albumesBtn = AlbumsUtils.verBtnAlbums();
+
+        //And doy clic en el boton "Albumes"
+        AlbumsUtils.clickBtn(albumesBtn);
+
+        //Espera asincrona para la carga de datos
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //When presiono un album con título específico
+        String titulo = "Poeta del pueblo";
+        AlbumsUtils.seleccionarAlbumNombre(titulo);
+
+        //Espera asincrona para la carga de datos
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //Then debo ver un título con el nombre del album
+        AlbumsUtils.validarTituloAlbum(titulo);
+
+        //And debo ver un subtitulo de Resumen del álbum
+        AlbumsUtils.validarSubtituloResumen();
+
+    }
+
+    @Test
+    public void botonVolverListaAlbumes() {
+        //Given que estoy en el home de la app
+        ViewInteraction albumesBtn = AlbumsUtils.verBtnAlbums();
+
+        //And doy clic en el boton "Albumes"
+        AlbumsUtils.clickBtn(albumesBtn);
+
+        //Espera asincrona para la carga de datos
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //When selecciono el primer album de la lista
+        AlbumsUtils.seleccionarAlbumPosicion(0);
+
+        //Espera asincrona para la carga de datos
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //And veo que aparece el resumen del album
+        AlbumsUtils.validarSubtituloResumen();
+
+        //And doy clic en el boton volver
+        AlbumsUtils.clickBotonVolver();
+
+        //Then debo regresar a la lista de albumes
+        AlbumsUtils.verTituloAlbum();
+
+        //Then puedo ahora hacer click en el segundo album de la lista
+        AlbumsUtils.seleccionarAlbumPosicion(1);
+
+        //Then debo ver ahora el resumen del segundo album
+        AlbumsUtils.validarSubtituloResumen();
+    }
+
+    @Test
+    public void backIconDetalleAlbum() {
+        //Given que estoy en el home de la app
+        ViewInteraction albumesBtn = AlbumsUtils.verBtnAlbums();
+
+        //And doy clic en el boton "Albumes"
+        AlbumsUtils.clickBtn(albumesBtn);
+
+        //Espera asincrona para la carga de datos
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //When selecciono el primer album de la lista
+        AlbumsUtils.seleccionarAlbumPosicion(0);
+
+        //Espera asincrona para la carga de datos
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //And veo que aparece el resumen del album
+        AlbumsUtils.validarSubtituloResumen();
+
+        //And doy clic en el ícono "Atras"
+        AlbumsUtils.clickBackIcon();
+
+        //Then debo regresar a la lista de albumes
+        AlbumsUtils.verTituloAlbum();
+
+        //Then puedo ahora hacer click en el segundo album de la lista
+        AlbumsUtils.seleccionarAlbumPosicion(1);
+
+        //Then debo ver ahora el resumen del segundo album
+        AlbumsUtils.validarSubtituloResumen();
     }
 }

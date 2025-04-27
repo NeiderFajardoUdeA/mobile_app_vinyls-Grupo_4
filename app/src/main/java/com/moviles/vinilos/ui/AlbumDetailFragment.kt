@@ -8,9 +8,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.moviles.vinilos.databinding.AlbumDetailBinding
-import android.net.Uri
-
+import android.widget.Button
+import android.widget.ImageView
 import com.moviles.vinilos.viewmodels.AlbumViewModel
+import com.moviles.vinilos.R
+import androidx.navigation.fragment.findNavController
 
 class AlbumDetailFragment : Fragment() {
     private var _binding: AlbumDetailBinding? = null
@@ -22,7 +24,6 @@ class AlbumDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = AlbumDetailBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 
@@ -43,7 +44,16 @@ class AlbumDetailFragment : Fragment() {
                 binding.albumReleaseYear.text = it.releaseDate.substring(0, 4)
             }
         }
-    }
+        val volverButton = view.findViewById<Button>(R.id.volverButton)
+        volverButton.setOnClickListener {
+            findNavController().navigate(R.id.action_albumDetailFragment_to_albumFragment)
+        }
+        val volverIcon = view.findViewById<ImageView>(R.id.backIcon)
+        volverIcon.setOnClickListener {
+            findNavController().navigate(R.id.action_albumDetailFragment_to_albumFragment)
+        }
+        }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
