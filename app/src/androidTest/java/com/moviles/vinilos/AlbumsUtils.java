@@ -5,16 +5,16 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.hasDescendant;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withParent;
 import static androidx.test.espresso.matcher.ViewMatchers.withParentIndex;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.not;
-
 import androidx.test.espresso.NoMatchingViewException;
 import androidx.test.espresso.ViewInteraction;
+import androidx.test.espresso.contrib.RecyclerViewActions;
 
 public class AlbumsUtils {
 
@@ -59,5 +59,33 @@ public class AlbumsUtils {
         try {
             onView(withId(R.id.albumTitle)).check(matches(isDisplayed()));
         } catch (NoMatchingViewException expected) {}
+    }
+
+
+    public static void seleccionarAlbumNombre(String nombreAlbum){
+        onView(withId(R.id.albumsRv))
+                .perform(RecyclerViewActions.actionOnItem(
+                        hasDescendant(withText(nombreAlbum)), click()));
+    }
+
+    public static void validarTituloAlbum(String tituloAlbum){
+        onView(withId(R.id.albumDetailTitle)).check(matches(allOf(isDisplayed(), withText(tituloAlbum))));
+    }
+
+    public static void validarSubtituloResumen(){
+        onView(withId(R.id.ResumenTitle)).check(matches(allOf(isDisplayed(), withText(R.string.resumen))));
+    }
+
+    public static void seleccionarAlbumPosicion(int position) {
+        onView(withId(R.id.albumsRv))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(position, click()));
+    }
+
+    public static void clickBotonVolver(){
+        onView(withId(R.id.volverButton)).perform(click());
+    }
+
+    public static void clickBackIcon(){
+        onView(withId(R.id.backIcon)).perform(click());
     }
 }
