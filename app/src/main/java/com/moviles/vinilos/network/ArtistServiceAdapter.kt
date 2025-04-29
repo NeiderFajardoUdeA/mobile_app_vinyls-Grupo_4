@@ -13,10 +13,10 @@ import org.json.JSONArray
 class ArtistServiceAdapter(context: Context) {
     companion object{
         const val BASE_URL= "http://172.190.114.252/"
-        private var instance: AlbumServiceAdapter? = null
+        private var instance: ArtistServiceAdapter? = null
         fun getInstance(context: Context) =
             instance ?: synchronized(this) {
-                instance ?: AlbumServiceAdapter(context).also {
+                instance ?: ArtistServiceAdapter(context).also {
                     instance = it
                 }
             }
