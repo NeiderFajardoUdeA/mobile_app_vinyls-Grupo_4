@@ -33,7 +33,7 @@ class ArtistServiceAdapter(context: Context) {
                 val list = mutableListOf<Artist>()
                 for (i in 0 until resp.length()) {
                     val item = resp.getJSONObject(i)
-                    list.add(i, Artist(artistId = item.getInt("id"), name = item.getString("name"), image = item.getString("cover"), description = item.getString("recordLabel"), birthDate = item.getString("birthDate")))
+                    list.add(i, Artist(artistId = item.getInt("id"), name = item.getString("name"), image = item.getString("image"), description = item.getString("description"), birthDate = item.getString("birthDate")))
                 }
                 onComplete(list)
             },
