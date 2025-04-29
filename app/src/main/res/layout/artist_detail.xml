@@ -1,5 +1,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:nacimiento="http://schemas.android.com/tools">
 
     <data>
         <variable
@@ -72,6 +73,7 @@
 
                     <TextView
                         android:id="@+id/artistBirthYear"
+                        android:text='@{"Fecha de nacimiento:" + artist.birthDate.substring(0,4)}'
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
