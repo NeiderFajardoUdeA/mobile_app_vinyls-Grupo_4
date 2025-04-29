@@ -7,16 +7,16 @@ import com.android.volley.Response
 import com.android.volley.VolleyError
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.moviles.vinilos.models.Album
+import com.moviles.vinilos.models.Artist
 import org.json.JSONArray
 
-class ServiceAdapter(context: Context) {
+class ArtistServiceAdapter(context: Context) {
     companion object{
         const val BASE_URL= "http://172.190.114.252/"
-        private var instance: ServiceAdapter? = null
+        private var instance: AlbumServiceAdapter? = null
         fun getInstance(context: Context) =
             instance ?: synchronized(this) {
-                instance ?: ServiceAdapter(context).also {
+                instance ?: AlbumServiceAdapter(context).also {
                     instance = it
                 }
             }
@@ -25,14 +25,15 @@ class ServiceAdapter(context: Context) {
         // applicationContext keeps you from leaking the Activity or BroadcastReceiver if someone passes one in.
         Volley.newRequestQueue(context.applicationContext)
     }
-    fun getAlbums(onComplete:(resp:List<Album>)->Unit, onError: (error:VolleyError)->Unit){
-        requestQueue.add(getRequest("albums",
+
+    fun getArtists(onComplete:(resp:List<Artist>)->Unit, onError: (error:VolleyError)->Unit){
+        requestQueue.add(getRequest("musicians",
             { response ->
                 val resp = JSONArray(response)
-                val list = mutableListOf<Album>()
+                val list = mutableListOf<Artist>()
                 for (i in 0 until resp.length()) {
                     val item = resp.getJSONObject(i)
-                    list.add(i, Album(albumId = item.getInt("id"),name = item.getString("name"), cover = item.getString("cover"), recordLabel = item.getString("recordLabel"), releaseDate = item.getString("releaseDate"), genre = item.getString("genre"), description = item.getString("description")))
+                    list.add(i, Artist(artistId = item.getInt("id"), name = item.getString("name"), image = item.getString("cover"), description = item.getString("recordLabel"), birthDate = item.getString("birthDate")))
                 }
                 onComplete(list)
             },
