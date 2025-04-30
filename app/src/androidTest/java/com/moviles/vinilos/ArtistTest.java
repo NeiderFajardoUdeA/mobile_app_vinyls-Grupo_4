@@ -202,7 +202,7 @@ public class ArtistTest {
         ArtistsUtils.verTituloArtist();
 
         //And click en el segundo Artist de la lista
-        ArtistsUtils.seleccionarArtistPosicion(1);
+        ArtistsUtils.seleccionarArtistPosicion(0);
 
         //Then debo ver ahora el resumen del segundo Artist
         ArtistsUtils.validarSubtituloResumen();
@@ -246,7 +246,7 @@ public class ArtistTest {
         ArtistsUtils.verTituloArtist();
 
         //And click en el segundo Artist de la lista
-        ArtistsUtils.seleccionarArtistPosicion(1);
+        ArtistsUtils.seleccionarArtistPosicion(0);
 
         //Then debo ver ahora el resumen del segundo Artist
         ArtistsUtils.validarSubtituloResumen();
