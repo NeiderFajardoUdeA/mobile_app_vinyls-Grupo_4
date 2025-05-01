@@ -1,0 +1,131 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:nacimiento="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="artist"
+            type="com.moviles.vinilos.models.Artist" />
+    </data>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="12dp">
+
+                    <ImageView
+                        android:id="@+id/backIcon"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_back"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true" />
+
+                    <TextView
+                        android:text="@{artist.name}"
+                        android:id="@+id/artistDetailTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="32sp"
+                        android:textStyle="bold"
+                        android:layout_centerInParent="true"
+                        android:layout_margin="16dp"
+                        android:textColor="#D6C22F" />
+                </RelativeLayout>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="2dp"
+                    android:background="@android:color/darker_gray"
+                    android:elevation="4dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:gravity="center_horizontal">
+
+                    <ImageView
+                        app:imageUrl="@{artist.image}"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:scaleType="centerCrop"
+                        android:contentDescription="@{artist.name}"
+                        />
+
+                    <TextView
+                        android:id="@+id/artistBirthYear"
+                        android:text='@{"Fecha de nacimiento:" + artist.birthDate.substring(0,4)}'
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:textColor="#000000"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+            <TextView
+                android:text="@string/resumen"
+                android:id="@+id/ResumenTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_margin="8dp"
+                android:textColor="#D6C22F"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"/>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:backgroundTint="#FFFBE0"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="6dp">
+                <TextView
+                    android:text="@{artist.description}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
+                    android:textSize="16sp"
+                    android:layout_margin="4dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"/>
+            </androidx.cardview.widget.CardView>
+
+
+                <Button
+                    android:id="@+id/volverButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="25dp"
+                    android:text="@string/volver"
+                    android:textColor="#FFFFFF"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    android:backgroundTint="#EDC967"
+                    android:fontFamily="sans-serif"
+                    app:layout_constraintWidth_percent="0.8"/>
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>
