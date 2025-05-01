@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
-            name="album"
-            type="com.moviles.vinilos.models.Album" />
+            name="collector"
+            type="com.moviles.vinilos.models.Collector" />
     </data>
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,7 +16,7 @@
         android:padding="8dp">
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cardViewAlbum"
+            android:id="@+id/cardViewCollector"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="true"
@@ -35,14 +36,13 @@
                 android:padding="8dp">
 
                 <TextView
-                    android:id="@+id/titleViewAlbum"
+                    android:id="@+id/titleViewCollector"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/boton_menu_albums"
+                    android:text="@string/boton_menu_collectors"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="#000000" />
-
             </LinearLayout>
 
             <LinearLayout
@@ -55,7 +55,7 @@
                     android:id="@+id/coverImage"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    app:imageUrl="@{album.cover}"
+                    app:imageUrl="@{collector.photo}"
                     android:scaleType="centerCrop"
                     android:background="#DDDDDD" />
 
@@ -67,33 +67,36 @@
                     android:layout_marginStart="16dp"
                     android:gravity="center_vertical">
 
+
                     <TextView
-                        android:id="@+id/albumTitle"
+                        android:id="@+id/collectorTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{album.name}"
+                        android:text="@{collector.name}"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:textColor="#000000" />
 
                     <TextView
-                        android:id="@+id/albumGenre"
+                        android:id="@+id/collectorTelephone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text='@{"Género: " + album.genre}'
+                        android:text='@{"Teléfono: " + collector.telephone}'
                         android:textSize="14sp"
                         android:textColor="#666666" />
 
                     <TextView
-                        android:id="@+id/albumYear"
+                        android:id="@+id/collectorEmail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text='@{"Año: " + album.releaseDate.substring(0,4)}'
+                        android:text='@{"Email: " + collector.email}'
                         android:textSize="14sp"
                         android:textColor="#666666" />
-
                 </LinearLayout>
+
             </LinearLayout>
+
         </com.google.android.material.card.MaterialCardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>
