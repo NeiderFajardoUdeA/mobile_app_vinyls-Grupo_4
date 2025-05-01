@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
-            name="album"
-            type="com.moviles.vinilos.models.Album" />
+            name="artist"
+            type="com.moviles.vinilos.models.Artist" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,7 +15,7 @@
         android:padding="8dp">
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cardViewAlbum"
+            android:id="@+id/cardViewArtist"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="true"
@@ -35,10 +35,10 @@
                 android:padding="8dp">
 
                 <TextView
-                    android:id="@+id/titleViewAlbum"
+                    android:id="@+id/titleViewArtist"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/boton_menu_albums"
+                    android:text="@string/boton_menu_artists"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="#000000" />
@@ -52,10 +52,10 @@
                 android:padding="8dp">
 
                 <ImageView
-                    android:id="@+id/coverImage"
+                    android:id="@+id/artistImage"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    app:imageUrl="@{album.cover}"
+                    app:imageUrl="@{artist.image}"
                     android:scaleType="centerCrop"
                     android:background="#DDDDDD" />
 
@@ -68,27 +68,19 @@
                     android:gravity="center_vertical">
 
                     <TextView
-                        android:id="@+id/albumTitle"
+                        android:id="@+id/artistTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{album.name}"
+                        android:text="@{artist.name}"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:textColor="#000000" />
 
                     <TextView
-                        android:id="@+id/albumGenre"
+                        android:id="@+id/artistBirthYear"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text='@{"Género: " + album.genre}'
-                        android:textSize="14sp"
-                        android:textColor="#666666" />
-
-                    <TextView
-                        android:id="@+id/albumYear"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text='@{"Año: " + album.releaseDate.substring(0,4)}'
+                        android:text='@{"Año: " + artist.birthDate.substring(0,4)}'
                         android:textSize="14sp"
                         android:textColor="#666666" />
 

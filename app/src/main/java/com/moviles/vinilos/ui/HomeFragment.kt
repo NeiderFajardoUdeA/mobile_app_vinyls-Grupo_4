@@ -22,6 +22,16 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_homeFragment_to_albumFragment)
         }
 
+        val artistsButton = view.findViewById<Button>(R.id.artistsButton)
+        artistsButton.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_artistFragment)
+        }
+
+        val collectorsButton = view.findViewById<Button>(R.id.collectorButton)
+        collectorsButton.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_collectorFragment)
+        }
+
         return view
     }
 }

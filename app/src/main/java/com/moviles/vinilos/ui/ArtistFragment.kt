@@ -5,39 +5,38 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.moviles.vinilos.OnAlbumClickListener
-import com.moviles.vinilos.databinding.AlbumFragmentBinding
-import com.moviles.vinilos.ui.adapters.AlbumsAdapter
-import com.moviles.vinilos.viewmodels.AlbumViewModel
+import com.moviles.vinilos.OnArtistClickListener
+import com.moviles.vinilos.databinding.ArtistFragmentBinding
+import com.moviles.vinilos.ui.adapters.ArtistsAdapter
+import com.moviles.vinilos.viewmodels.ArtistViewModel
 import com.moviles.vinilos.R
 
-class AlbumFragment : Fragment(), OnAlbumClickListener {
-    private var _binding: AlbumFragmentBinding? = null
+class ArtistFragment : Fragment(), OnArtistClickListener {
+    private var _binding: ArtistFragmentBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: AlbumViewModel
-    private var viewModelAdapter: AlbumsAdapter? = null
+    private lateinit var viewModel: ArtistViewModel
+    private var viewModelAdapter: ArtistsAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = AlbumFragmentBinding.inflate(inflater, container, false)
-        viewModelAdapter = AlbumsAdapter(this)
-
-
+        _binding = ArtistFragmentBinding.inflate(inflater, container, false)
+        viewModelAdapter = ArtistsAdapter(this)
 
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         //RecyclerView
-        binding.albumsRv.apply {
+        binding.artistsRv.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = viewModelAdapter
         }
@@ -45,11 +44,11 @@ class AlbumFragment : Fragment(), OnAlbumClickListener {
         //Listener para búsqueda
         binding.searchInput.addTextChangedListener { editable ->
             val query = editable?.toString().orEmpty()
-            viewModel.searchAlbums(query)
+            viewModel.searchArtists(query)
         }
 
         binding.menuIcon.setOnClickListener{
-            findNavController().navigate(R.id.action_albumFragment_to_homeFragment)
+            findNavController().navigate(R.id.action_artistFragment_to_homeFragment)
         }
     }
 
@@ -58,13 +57,12 @@ class AlbumFragment : Fragment(), OnAlbumClickListener {
         val activity = requireNotNull(this.activity) {
             "You can only access the viewModel after onActivityCreated()"
         }
-        activity.actionBar?.title = getString(R.string.title_albums)
-        viewModel = ViewModelProvider(this, AlbumViewModel.Factory(activity.application))
-            .get(AlbumViewModel::class.java)
+        (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.title_artists)
+        viewModel = ViewModelProvider(this, ArtistViewModel.Factory(activity.application))[ArtistViewModel::class.java]
 
         //Observamos cambios en la lista filtrada
-        viewModel.albums.observe(viewLifecycleOwner, Observer { list ->
-            viewModelAdapter?.albums = list
+        viewModel.artists.observe(viewLifecycleOwner, Observer { list ->
+            viewModelAdapter?.artists = list
         })
 
         viewModel.eventNetworkError.observe(viewLifecycleOwner, Observer { isError ->
@@ -84,9 +82,9 @@ class AlbumFragment : Fragment(), OnAlbumClickListener {
         _binding = null
     }
 
-    override fun onAlbumClick(albumId: Int) {
-        // Navigate to the album detail screen
-        val action = AlbumFragmentDirections.actionAlbumFragmentToAlbumDetailFragment(albumId)
+    override fun onArtistClick(artistId: Int) {
+        // Navigate to the artists detail screen
+        val action = ArtistFragmentDirections.actionArtistFragmentToArtistDetailFragment(artistId)
         findNavController().navigate(action)
     }
 }
