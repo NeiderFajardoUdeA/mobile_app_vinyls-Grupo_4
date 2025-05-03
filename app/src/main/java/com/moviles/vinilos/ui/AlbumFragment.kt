@@ -29,9 +29,6 @@ class AlbumFragment : Fragment(), OnAlbumClickListener {
     ): View {
         _binding = AlbumFragmentBinding.inflate(inflater, container, false)
         viewModelAdapter = AlbumsAdapter(this)
-
-
-
         return binding.root
     }
 
