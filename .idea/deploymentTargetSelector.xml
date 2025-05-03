@@ -5,10 +5,19 @@
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="AlbumTest">
+      <SelectionState runConfigName="verTituloVistaColeccionistasYVolverHome()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="ArtistTest">
+      <SelectionState runConfigName="verListaColeccionistas()">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="buscarColeccionistaVacio()">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="buscarColeccionista()">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="verDetalleColeccionista()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

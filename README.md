@@ -89,3 +89,9 @@ Para ejecutar la aplicación se requiere un emulador Android con SDK 35:
 
 - Si hay errores de dependencias, limpiar y reconstruir el proyecto: `./gradlew clean build`
 - Si hay problemas con el emulador, intentar con un **cold boot** o reiniciar Android Studio.
+
+
+**Nota Derechos de Autor de las imágenes**
+- El ícono principal de la aplicación fué generado a través de CHATGPT
+- Los íconos funcionales fueron tomados de flaticon.es de la galería de íconos gratuitos
+- La ícono de coleccionistas es un recurso gratuito autoría de Freepik.

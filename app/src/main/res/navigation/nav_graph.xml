@@ -74,7 +74,21 @@
         <action
             android:id="@+id/action_collectorFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_collectorFragment_to_collectorDetailFragment"
+            app:destination="@id/collectorDetailFragment" />
     </fragment>
 
+    <fragment
+        android:id="@+id/collectorDetailFragment"
+        android:name="com.moviles.vinilos.ui.CollectorDetailFragment"
+        android:label="Detalles del Coleccionista" >
+        <argument
+            android:name="collectorId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_collectorDetailFragment_to_collectorFragment"
+            app:destination="@id/collectorFragment" />
+    </fragment>
 
 </navigation>

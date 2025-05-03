@@ -9,24 +9,26 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.moviles.vinilos.OnCollectorClickListener
 import com.moviles.vinilos.R
 import com.moviles.vinilos.databinding.CollectorFragmentBinding
-import com.moviles.vinilos.ui.adapters.CollectorAdapter
+import com.moviles.vinilos.ui.adapters.CollectorsAdapter
 import com.moviles.vinilos.viewmodels.CollectorViewModel
 
-class CollectorFragment() : Fragment() {
+class CollectorFragment() : Fragment(), OnCollectorClickListener {
     private var _binding: CollectorFragmentBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: CollectorViewModel
-    private var viewModelAdapter: CollectorAdapter? = null
+    private var viewModelAdapter: CollectorsAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = CollectorFragmentBinding.inflate(inflater, container, false)
-        viewModelAdapter = CollectorAdapter()
+        viewModelAdapter = CollectorsAdapter(this)
 
         return binding.root
     }
@@ -40,6 +42,10 @@ class CollectorFragment() : Fragment() {
         binding.searchInput.addTextChangedListener { editable ->
             val query = editable?.toString().orEmpty()
             viewModel.searchCollectors(query)
+        }
+
+        binding.menuIcon.setOnClickListener{
+            findNavController().navigate(R.id.action_collectorFragment_to_homeFragment)
         }
     }
 
@@ -72,4 +78,10 @@ class CollectorFragment() : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+    override fun onCollectorClick(collectorId: Int) {
+        val action = CollectorFragmentDirections.actionCollectorFragmentToCollectorDetailFragment(collectorId)
+        findNavController().navigate(action)
+    }
+
 }
