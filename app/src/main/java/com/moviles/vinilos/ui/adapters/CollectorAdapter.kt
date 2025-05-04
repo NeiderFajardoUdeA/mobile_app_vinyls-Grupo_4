@@ -7,12 +7,13 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.moviles.vinilos.OnCollectorClickListener
 import com.moviles.vinilos.R
 import com.moviles.vinilos.databinding.CollectorItemBinding
 import com.moviles.vinilos.models.Collector
 import com.squareup.picasso.Picasso
 
-class CollectorAdapter() : RecyclerView.Adapter<CollectorAdapter.CollectorViewHolder>() {
+class CollectorsAdapter(private val clickListener: OnCollectorClickListener) : RecyclerView.Adapter<CollectorsAdapter.CollectorViewHolder>() {
 
     var collectors: List<Collector> = emptyList()
         set(value) {
@@ -33,7 +34,7 @@ class CollectorAdapter() : RecyclerView.Adapter<CollectorAdapter.CollectorViewHo
         holder.viewDataBinding.also {
             it.collector = collectors[position]
         }
-        holder.bind(collectors[position])
+        holder.bind(collectors[position], clickListener)
     }
 
     override fun getItemCount(): Int {
@@ -45,25 +46,12 @@ class CollectorAdapter() : RecyclerView.Adapter<CollectorAdapter.CollectorViewHo
         companion object {
             @LayoutRes
             val LAYOUT = R.layout.collector_item
-
-            @JvmStatic
-            @BindingAdapter("imageUrl")
-            fun ImageView.loadImage(url: String?) {
-                if (!url.isNullOrEmpty()) {
-                    Picasso.get()
-                        .load(url)
-                        .placeholder(R.drawable.ic_album_placeholder)
-                        .error(R.drawable.ic_album_placeholder)
-                        .fit()
-                        .centerCrop()
-                        .into(this)
-                } else {
-                    setImageResource(R.drawable.ic_album_placeholder)
-                }
-            }
         }
-        fun bind(collector: Collector) {
+        fun bind(collector: Collector, clickListener: OnCollectorClickListener) {
             viewDataBinding.collector = collector
+            viewDataBinding.cardViewCollector.setOnClickListener {
+                clickListener.onCollectorClick(collector.collectorId)
+            }
             viewDataBinding.executePendingBindings()
         }
     }
