@@ -9,7 +9,7 @@ import org.json.JSONArray
 
 class CollectorServiceAdapter(context: Context) {
     companion object{
-        const val BASE_URL = "http://172.190.114.252/"
+        const val BASE_URL= "https://backvynils-q6yc.onrender.com/"
         private var instance: CollectorServiceAdapter? = null
         fun getInstance(context: Context) =
             instance ?: synchronized(this) {

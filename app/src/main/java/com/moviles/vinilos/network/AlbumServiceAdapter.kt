@@ -9,10 +9,11 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.moviles.vinilos.models.Album
 import org.json.JSONArray
+import com.moviles.vinilos.R
 
 class AlbumServiceAdapter(context: Context) {
     companion object{
-        const val BASE_URL= "http://172.190.114.252/"
+        const val BASE_URL= "https://backvynils-q6yc.onrender.com/"
         private var instance: AlbumServiceAdapter? = null
         fun getInstance(context: Context) =
             instance ?: synchronized(this) {
