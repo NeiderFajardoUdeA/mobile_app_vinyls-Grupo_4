@@ -2,6 +2,7 @@ package com.moviles.vinilos.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.*
+import com.moviles.vinilos.database.VinylRoomDatabase
 import com.moviles.vinilos.models.Artist
 import com.moviles.vinilos.repositories.ArtistRepository
 import kotlinx.coroutines.Dispatchers
@@ -10,7 +11,7 @@ import kotlinx.coroutines.withContext
 
 class ArtistViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val artistRepository = ArtistRepository(application)
+    private val artistRepository = ArtistRepository(application, VinylRoomDatabase.getDatabase(application.applicationContext).artistsDao())
 
     //Lista completa
     private var allArtists: List<Artist> = emptyList()
