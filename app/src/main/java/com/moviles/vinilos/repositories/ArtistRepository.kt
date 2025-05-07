@@ -8,14 +8,26 @@ import com.moviles.vinilos.models.Artist
 import com.moviles.vinilos.network.ArtistServiceAdapter
 
 class ArtistRepository (val application: Application, private val artistsDao: ArtistsDao){
-    suspend fun refreshData(): List<Artist>{
-        val cached = artistsDao.getArtists()
-        return cached.ifEmpty {
-            val cm =
-                application.baseContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-            if (cm.activeNetworkInfo?.type != ConnectivityManager.TYPE_WIFI && cm.activeNetworkInfo?.type != ConnectivityManager.TYPE_MOBILE) {
-                emptyList()
-            } else ArtistServiceAdapter.getInstance(application).getArtists()
+    suspend fun refreshData(): List<Artist> {
+        val cm = application.baseContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
+        return if (cm.activeNetworkInfo?.isConnected == true) {
+            try {
+                //Obtener datos del servicio remoto
+                val remoteArtists = ArtistServiceAdapter.getInstance(application).getArtists()
+
+                //Almacenar en caché local (DAO)
+                remoteArtists.forEach { artist -> artistsDao.insert(artist)}
+
+                //Devolver los datos frescos del servicio
+                remoteArtists
+            } catch (e: Exception) {
+                //Si el servicio falla, devolver caché local
+                artistsDao.getArtists() ?: emptyList()
+            }
+        } else {
+            //Devolver solo caché local
+            artistsDao.getArtists() ?: emptyList()
         }
     }
 }
