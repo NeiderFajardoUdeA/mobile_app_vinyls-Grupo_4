@@ -4,6 +4,9 @@ import android.app.Application
 import androidx.lifecycle.*
 import com.moviles.vinilos.models.Artist
 import com.moviles.vinilos.repositories.ArtistRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class ArtistViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -30,15 +33,19 @@ class ArtistViewModel(application: Application) : AndroidViewModel(application) 
     }
 
     private fun refreshDataFromNetwork() {
-        artistRepository.refreshData({ list ->
-            //Guardamos lista completa y actualizamos LiveData
-            allArtists = list
-            _artists.value = list
-            _eventNetworkError.value = false
-            _isNetworkErrorShown.value = false
-        }, {
+        try {
+            viewModelScope.launch(Dispatchers.Default){
+                withContext(Dispatchers.IO){
+                    val data = artistRepository.refreshData()
+                    _artists.postValue(data)
+                }
+                _eventNetworkError.postValue(false)
+                _isNetworkErrorShown.postValue(false)
+            }
+        }
+        catch (e:Exception){
             _eventNetworkError.value = true
-        })
+        }
     }
 
     fun searchArtists(query: String) {

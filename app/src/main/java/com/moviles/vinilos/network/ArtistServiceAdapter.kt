@@ -4,11 +4,13 @@ import android.content.Context
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
-import com.android.volley.VolleyError
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.moviles.vinilos.models.Artist
 import org.json.JSONArray
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
+import kotlin.coroutines.suspendCoroutine
 
 class ArtistServiceAdapter(context: Context) {
     companion object{
@@ -26,7 +28,7 @@ class ArtistServiceAdapter(context: Context) {
         Volley.newRequestQueue(context.applicationContext)
     }
 
-    fun getArtists(onComplete:(resp:List<Artist>)->Unit, onError: (error:VolleyError)->Unit){
+    suspend fun getArtists() = suspendCoroutine<List<Artist>>{ cont->
         requestQueue.add(getRequest("musicians",
             { response ->
                 val resp = JSONArray(response)
@@ -35,10 +37,10 @@ class ArtistServiceAdapter(context: Context) {
                     val item = resp.getJSONObject(i)
                     list.add(i, Artist(artistId = item.getInt("id"), name = item.getString("name"), image = item.getString("image"), description = item.getString("description"), birthDate = item.getString("birthDate")))
                 }
-                onComplete(list)
+                cont.resume(list)
             },
             {
-                onError(it)
+                cont.resumeWithException(it)
             }))
     }
 
