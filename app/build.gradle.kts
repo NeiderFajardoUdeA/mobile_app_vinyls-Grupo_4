@@ -1,3 +1,5 @@
+val roomVersion: String by project
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -66,6 +68,9 @@ dependencies {
     implementation(libs.picasso)
     implementation(libs.androidx.espresso.contrib)
     implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.androidx.room.ktx)
+    kapt("androidx.room:room-compiler:$roomVersion")
+    androidTestImplementation("androidx.room:room-testing:$rootProject.roomVersion")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

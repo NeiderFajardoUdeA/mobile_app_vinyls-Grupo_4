@@ -17,6 +17,7 @@ navigationFragment = "2.8.9"
 navigationFragmentKtx = "2.8.9"
 navigationUiKtx = "2.8.9"
 picasso = "2.71828"
+roomVersion = "2.4.0-alpha03"
 runner = "1.0.2"
 volley = "1.2.1"
 databindingRuntime = "8.9.2"
@@ -28,6 +29,7 @@ androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayo
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
 androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigationUiKtx" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomVersion" }
 compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "glide" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
