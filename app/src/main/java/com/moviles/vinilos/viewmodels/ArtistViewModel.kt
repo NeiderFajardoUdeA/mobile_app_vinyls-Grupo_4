@@ -38,6 +38,7 @@ class ArtistViewModel(application: Application) : AndroidViewModel(application) 
             viewModelScope.launch(Dispatchers.Default){
                 withContext(Dispatchers.IO){
                     val data = artistRepository.refreshData()
+                    allArtists = data
                     _artists.postValue(data)
                 }
                 _eventNetworkError.postValue(false)
