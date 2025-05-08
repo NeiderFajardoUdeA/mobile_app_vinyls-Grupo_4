@@ -4,15 +4,17 @@ import android.content.Context
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
-import com.android.volley.VolleyError
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.moviles.vinilos.models.Album
 import org.json.JSONArray
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
+import kotlin.coroutines.suspendCoroutine
 
 class AlbumServiceAdapter(context: Context) {
     companion object{
-        const val BASE_URL= "http://172.190.114.252/"
+        const val BASE_URL= "https://backvynils-q6yc.onrender.com/"
         private var instance: AlbumServiceAdapter? = null
         fun getInstance(context: Context) =
             instance ?: synchronized(this) {
@@ -25,7 +27,8 @@ class AlbumServiceAdapter(context: Context) {
         // applicationContext keeps you from leaking the Activity or BroadcastReceiver if someone passes one in.
         Volley.newRequestQueue(context.applicationContext)
     }
-    fun getAlbums(onComplete:(resp:List<Album>)->Unit, onError: (error:VolleyError)->Unit){
+
+    suspend fun getAlbums() = suspendCoroutine<List<Album>>{ cont->
         requestQueue.add(getRequest("albums",
             { response ->
                 val resp = JSONArray(response)
@@ -34,10 +37,10 @@ class AlbumServiceAdapter(context: Context) {
                     val item = resp.getJSONObject(i)
                     list.add(i, Album(albumId = item.getInt("id"),name = item.getString("name"), cover = item.getString("cover"), recordLabel = item.getString("recordLabel"), releaseDate = item.getString("releaseDate"), genre = item.getString("genre"), description = item.getString("description")))
                 }
-                onComplete(list)
+                cont.resume(list)
             },
             {
-                onError(it)
+                cont.resumeWithException(it)
             }))
     }
 

@@ -58,7 +58,9 @@ class ArtistFragment : Fragment(), OnArtistClickListener {
             "You can only access the viewModel after onActivityCreated()"
         }
         (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.title_artists)
-        viewModel = ViewModelProvider(this, ArtistViewModel.Factory(activity.application))[ArtistViewModel::class.java]
+
+        viewModel = ViewModelProvider(this, ArtistViewModel.Factory(activity.application
+        )).get(ArtistViewModel::class.java)
 
         //Observamos cambios en la lista filtrada
         viewModel.artists.observe(viewLifecycleOwner, Observer { list ->
