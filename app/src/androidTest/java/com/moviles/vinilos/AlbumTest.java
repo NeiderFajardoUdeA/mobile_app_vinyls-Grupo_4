@@ -122,7 +122,7 @@ public class AlbumTest {
         AlbumsUtils.clickBtn(barraBusqueda);
 
         //When buscamos un album por un titulo especifico
-        String titulo = "Poeta del pueblo";
+        String titulo = "Mi angel";
         AlbumsUtils.buscarAlbumByTitulo(titulo);
 
         //Espera asincrona para la carga de datos
@@ -184,21 +184,31 @@ public class AlbumTest {
         //When selecciono el primer album de la lista
         AlbumsUtils.seleccionarAlbumPosicion(0);
 
+        //And veo que aparece el resumen del album
+        AlbumsUtils.validarSubtituloResumen();
+
         //And espera asincrona para la carga de datos
         try {
-            Thread.sleep(2000);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        //And veo que aparece el resumen del album
-        AlbumsUtils.validarSubtituloResumen();
+        //And el boton de volver esta
+        ViewInteraction btnVolver = AlbumsUtils.verBtnVolver();
 
         //And doy clic en el boton volver
-        AlbumsUtils.clickBotonVolver();
+        AlbumsUtils.clickBtn(btnVolver);
 
         //And regreso a la lista de albumes
         AlbumsUtils.verTituloAlbum();
+
+        //And espera asincrona para la carga de datos
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         //And click en el segundo album de la lista
         AlbumsUtils.seleccionarAlbumPosicion(1);
@@ -225,15 +235,15 @@ public class AlbumTest {
         //When selecciono el primer album de la lista
         AlbumsUtils.seleccionarAlbumPosicion(0);
 
+        //And veo que aparece el resumen del album
+        AlbumsUtils.validarSubtituloResumen();
+
         //And espera asincrona para la carga de datos
         try {
-            Thread.sleep(2000);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-        //And veo que aparece el resumen del album
-        AlbumsUtils.validarSubtituloResumen();
 
         //And busco que el boton este en la vista
         ViewInteraction backBtn = AlbumsUtils.verBtnBackDetail();
@@ -243,6 +253,13 @@ public class AlbumTest {
 
         //And regreso a la lista de albumes
         AlbumsUtils.verTituloAlbum();
+
+        //And espera asincrona para la carga de datos
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         //And click en el segundo album de la lista
         AlbumsUtils.seleccionarAlbumPosicion(1);

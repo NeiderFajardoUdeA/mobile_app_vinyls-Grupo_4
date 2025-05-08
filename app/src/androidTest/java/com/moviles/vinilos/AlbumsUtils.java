@@ -22,6 +22,10 @@ public class AlbumsUtils {
         return onView(allOf(withId(R.id.albumesButton), withText(R.string.boton_menu_albums), isDisplayed()));
     }
 
+    public static ViewInteraction verBtnVolver() {
+        return onView(allOf(withId(R.id.volverButton), withText(R.string.volver), isDisplayed()));
+    }
+
     public static ViewInteraction verBtnBackDetail() {
         return onView(allOf(withId(R.id.backIcon), isDisplayed()));
     }
