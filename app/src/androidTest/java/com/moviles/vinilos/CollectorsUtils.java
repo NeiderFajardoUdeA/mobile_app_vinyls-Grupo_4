@@ -20,6 +20,10 @@ public class CollectorsUtils {
         return onView(allOf(withId(R.id.collectorButton), withText(R.string.boton_menu_collectors), isDisplayed()));
     }
 
+    public static ViewInteraction verBtnVolver() {
+        return onView(allOf(withId(R.id.volverButton), withText(R.string.volver), isDisplayed()));
+    }
+
     public static ViewInteraction verBtnBackDetail() {
         return onView(allOf(withId(R.id.backIcon), isDisplayed()));
     }
