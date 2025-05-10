@@ -6,6 +6,9 @@ import com.android.volley.VolleyError
 import com.android.volley.toolbox.Volley
 import com.moviles.vinilos.models.Collector
 import org.json.JSONArray
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
+import kotlin.coroutines.suspendCoroutine
 
 class CollectorServiceAdapter(context: Context) {
     companion object{
@@ -22,7 +25,7 @@ class CollectorServiceAdapter(context: Context) {
         // applicationContext keeps you from leaking the Activity or BroadcastReceiver if someone passes one in.
         Volley.newRequestQueue(context.applicationContext)
     }
-    fun getCollectors(onComplete:(resp:List<Collector>)->Unit, onError: (error: VolleyError)->Unit){
+    suspend fun getCollectors() = suspendCoroutine<List<Collector>>{ cont->
         requestQueue.add(getRequest("collectors",
             { response ->
                 val resp = JSONArray(response)
@@ -31,10 +34,10 @@ class CollectorServiceAdapter(context: Context) {
                     val item = resp.getJSONObject(i)
                     list.add(i, Collector(collectorId = item.getInt("id"), name = item.getString("name"), email = item.getString("email"), telephone = item.getString("telephone")))
                 }
-                onComplete(list)
+                cont.resume(list)
             },
             {
-                onError(it)
+                cont.resumeWithException(it as VolleyError)
             }))
     }
     private fun getRequest(path: String, responseListener: com.android.volley.Response.Listener<String>, errorListener: com.android.volley.Response.ErrorListener): com.android.volley.toolbox.StringRequest {
