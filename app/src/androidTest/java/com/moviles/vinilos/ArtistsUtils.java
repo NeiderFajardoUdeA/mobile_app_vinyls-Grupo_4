@@ -66,6 +66,9 @@ public class ArtistsUtils {
         } catch (NoMatchingViewException expected) {}
     }
 
+    public static ViewInteraction verBtnVolver() {
+        return onView(allOf(withId(R.id.volverButton), withText(R.string.volver), isDisplayed()));
+    }
 
     public static void seleccionarArtistNombre(String nombreArtist){
         onView(withId(R.id.artistsRv))

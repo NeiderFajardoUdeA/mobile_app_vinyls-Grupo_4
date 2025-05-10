@@ -1,7 +1,10 @@
 package com.moviles.vinilos.models
 
+import androidx.room.*
+
+@Entity(tableName = "albums_table")
 data class Album (
-    val albumId:Int,
+    @PrimaryKey val albumId : Int,
     val name:String,
     val cover:String,
     val releaseDate:String,

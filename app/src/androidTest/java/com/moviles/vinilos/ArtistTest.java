@@ -185,24 +185,34 @@ public class ArtistTest {
         //When selecciono el primer Artist de la lista
         ArtistsUtils.seleccionarArtistPosicion(0);
 
+        //And veo que aparece el resumen del Artist
+        ArtistsUtils.validarSubtituloResumen();
+
         //And espera asincrona para la carga de datos
         try {
-            Thread.sleep(2000);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        //And veo que aparece el resumen del Artist
-        ArtistsUtils.validarSubtituloResumen();
+        //And el boton de volver esta
+        ViewInteraction btnVolver = ArtistsUtils.verBtnVolver();
 
         //And doy clic en el boton volver
-        ArtistsUtils.clickBotonVolver();
+        ArtistsUtils.clickBtn(btnVolver);
 
         //And regreso a la lista de Artists
         ArtistsUtils.verTituloArtist();
 
+        //And espera asincrona para la carga de datos
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         //And click en el segundo Artist de la lista
-        ArtistsUtils.seleccionarArtistPosicion(0);
+        ArtistsUtils.seleccionarArtistPosicion(1);
 
         //Then debo ver ahora el resumen del segundo Artist
         ArtistsUtils.validarSubtituloResumen();
@@ -226,27 +236,34 @@ public class ArtistTest {
         //When selecciono el primer Artist de la lista
         ArtistsUtils.seleccionarArtistPosicion(0);
 
+        //And veo que aparece el resumen del Artist
+        ArtistsUtils.validarSubtituloResumen();
+
         //And espera asincrona para la carga de datos
         try {
-            Thread.sleep(2000);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        //And veo que aparece el resumen del Artist
-        ArtistsUtils.validarSubtituloResumen();
-
-        //And busco que el boton este en la vista
+        //And el boton de volver esta
         ViewInteraction backBtn = ArtistsUtils.verBtnBackDetail();
 
-        //And doy clic en el ícono "Atras"
+        //And doy clic en el boton volver icon
         ArtistsUtils.clickBtn(backBtn);
 
         //And regreso a la lista de Artists
         ArtistsUtils.verTituloArtist();
 
+        //And espera asincrona para la carga de datos
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         //And click en el segundo Artist de la lista
-        ArtistsUtils.seleccionarArtistPosicion(0);
+        ArtistsUtils.seleccionarArtistPosicion(1);
 
         //Then debo ver ahora el resumen del segundo Artist
         ArtistsUtils.validarSubtituloResumen();
