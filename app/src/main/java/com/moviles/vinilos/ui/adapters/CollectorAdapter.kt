@@ -2,23 +2,24 @@ package com.moviles.vinilos.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.annotation.LayoutRes
-import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.moviles.vinilos.OnCollectorClickListener
 import com.moviles.vinilos.R
 import com.moviles.vinilos.databinding.CollectorItemBinding
 import com.moviles.vinilos.models.Collector
-import com.squareup.picasso.Picasso
+import com.moviles.vinilos.ui.adapters.utils.CollectorDiffCallback
 
 class CollectorsAdapter(private val clickListener: OnCollectorClickListener) : RecyclerView.Adapter<CollectorsAdapter.CollectorViewHolder>() {
 
     var collectors: List<Collector> = emptyList()
         set(value) {
+            val diffCallback = CollectorDiffCallback(field, value)
+            val diffResult = DiffUtil.calculateDiff(diffCallback)
             field = value
-            notifyDataSetChanged()
+            diffResult.dispatchUpdatesTo(this)
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CollectorViewHolder {

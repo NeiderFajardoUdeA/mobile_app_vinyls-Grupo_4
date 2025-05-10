@@ -6,19 +6,23 @@ import android.widget.ImageView
 import androidx.annotation.LayoutRes
 import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.moviles.vinilos.OnAlbumClickListener
 import com.moviles.vinilos.R
 import com.moviles.vinilos.databinding.AlbumItemBinding
 import com.moviles.vinilos.models.Album
+import com.moviles.vinilos.ui.adapters.utils.AlbumDiffCallback
 import com.squareup.picasso.Picasso
 
 class AlbumsAdapter(private val clickListener: OnAlbumClickListener) : RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>(){
 
     var albums :List<Album> = emptyList()
         set(value) {
+            val diffCallback = AlbumDiffCallback(field, value)
+            val diffResult = DiffUtil.calculateDiff(diffCallback)
             field = value
-            notifyDataSetChanged()
+            diffResult.dispatchUpdatesTo(this)
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlbumViewHolder {
