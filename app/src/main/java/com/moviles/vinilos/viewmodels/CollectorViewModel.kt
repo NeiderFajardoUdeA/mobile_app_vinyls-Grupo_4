@@ -5,11 +5,16 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import com.moviles.vinilos.models.Collector
 import com.moviles.vinilos.repositories.CollectorRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import kotlinx.coroutines.launch
+import com.moviles.vinilos.database.VinylRoomDatabase
 
 class CollectorViewModel(application: Application) : AndroidViewModel(application) {
-    private val collectorRepository = CollectorRepository(application)
+    private val collectorRepository = CollectorRepository(application, VinylRoomDatabase.getDatabase(application.applicationContext).collectorsDao())
 
     //Lista completa
     private var allCollectors: List<Collector> = emptyList()
@@ -31,15 +36,20 @@ class CollectorViewModel(application: Application) : AndroidViewModel(applicatio
     }
 
     private fun refreshDataFromNetwork() {
-        collectorRepository.refreshData({ list ->
-            //Guardar lista completa y actualizar LiveData
-            allCollectors = list
-            _collectors.value = list
-            _eventNetworkError.value = false
-            _isNetworkErrorShown.value = false
-        }, {
+        try{
+            viewModelScope.launch(Dispatchers.Default){
+                withContext(Dispatchers.IO){
+                    val data = collectorRepository.refreshData()
+                    allCollectors = data
+                    _collectors.postValue(data)
+                }
+                _eventNetworkError.postValue(false)
+                _isNetworkErrorShown.postValue(false)
+            }
+        }catch (e:Exception){
             _eventNetworkError.value = true
-        })
+        }
+
     }
 
     fun searchCollectors(query: String) {
