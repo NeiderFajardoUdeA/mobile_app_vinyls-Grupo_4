@@ -61,10 +61,6 @@ class ArtistViewModel(application: Application) : AndroidViewModel(application) 
         }
     }
 
-    fun getArtistById(artistId: Int): Artist? {
-        return artists.value?.get(artistId)
-    }
-
     fun onNetworkErrorShown() {
         _isNetworkErrorShown.value = true
     }
