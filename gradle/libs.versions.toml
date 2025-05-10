@@ -22,6 +22,7 @@ runner = "1.0.2"
 volley = "1.2.1"
 databindingRuntime = "8.9.2"
 espresso="3.6.1"
+roomCommonJvm = "2.7.1"
 
 [libraries]
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
@@ -56,6 +57,7 @@ androidx-databinding-runtime = { group = "androidx.databinding", name = "databin
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomVersion" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomVersion" }
 androidx-room-testing = { module = "androidx.room:room-testing", version.ref = "roomVersion" }
+androidx-room-common-jvm = { group = "androidx.room", name = "room-common-jvm", version.ref = "roomCommonJvm" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
