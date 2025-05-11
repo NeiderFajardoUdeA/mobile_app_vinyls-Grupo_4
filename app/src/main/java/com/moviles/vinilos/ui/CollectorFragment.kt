@@ -17,7 +17,7 @@ import com.moviles.vinilos.databinding.CollectorFragmentBinding
 import com.moviles.vinilos.ui.adapters.CollectorsAdapter
 import com.moviles.vinilos.viewmodels.CollectorViewModel
 
-class CollectorFragment() : Fragment(), OnCollectorClickListener {
+class CollectorFragment : Fragment(), OnCollectorClickListener {
     private var _binding: CollectorFragmentBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: CollectorViewModel
@@ -55,12 +55,11 @@ class CollectorFragment() : Fragment(), OnCollectorClickListener {
             "You can only access the viewModel after onActivityCreated()"
         }
         activity.actionBar?.title = getString(R.string.title_collectors)
-        viewModel = ViewModelProvider(activity, CollectorViewModel.Factory(activity.application))
-            .get(CollectorViewModel::class.java)
+        viewModel = ViewModelProvider(activity, CollectorViewModel.Factory(activity.application))[CollectorViewModel::class.java]
 
-        viewModel.collectors.observe(viewLifecycleOwner, Observer { collectorList ->
+        viewModel.collectors.observe(viewLifecycleOwner) { collectorList ->
             viewModelAdapter?.collectors = collectorList
-        })
+        }
 
         viewModel.eventNetworkError.observe(viewLifecycleOwner) { isNetworkError ->
             if (isNetworkError) onNetworkError()

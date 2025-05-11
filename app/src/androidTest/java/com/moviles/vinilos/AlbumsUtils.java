@@ -88,12 +88,4 @@ public class AlbumsUtils {
         onView(withId(R.id.albumsRv))
                 .perform(RecyclerViewActions.actionOnItemAtPosition(position, click()));
     }
-
-    public static void clickBotonVolver(){
-        onView(withId(R.id.volverButton)).perform(click());
-    }
-
-    public static void clickBackIcon(){
-        onView(withId(R.id.backIcon)).perform(click());
-    }
 }

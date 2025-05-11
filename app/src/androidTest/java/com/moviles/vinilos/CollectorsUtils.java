@@ -20,6 +20,10 @@ public class CollectorsUtils {
         return onView(allOf(withId(R.id.collectorButton), withText(R.string.boton_menu_collectors), isDisplayed()));
     }
 
+    public static ViewInteraction verBtnVolver() {
+        return onView(allOf(withId(R.id.volverButton), withText(R.string.volver), isDisplayed()));
+    }
+
     public static ViewInteraction verBtnBackDetail() {
         return onView(allOf(withId(R.id.backIcon), isDisplayed()));
     }
@@ -81,13 +85,5 @@ public class CollectorsUtils {
     public static void seleccionarColeccionistaPosicion(int position) {
         onView(withId(R.id.collectorRv))
                 .perform(RecyclerViewActions.actionOnItemAtPosition(position, click()));
-    }
-
-    public static void clickBotonVolver(){
-        onView(withId(R.id.volverButton)).perform(click());
-    }
-
-    public static void clickBackIcon(){
-        onView(withId(R.id.backIcon)).perform(click());
     }
 }

@@ -9,16 +9,20 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.moviles.vinilos.OnArtistClickListener
 import com.moviles.vinilos.R
+import androidx.recyclerview.widget.DiffUtil
 import com.moviles.vinilos.databinding.ArtistItemBinding
 import com.moviles.vinilos.models.Artist
 import com.squareup.picasso.Picasso
+import com.moviles.vinilos.ui.adapters.utils.ArtistDiffCallback
 
 class ArtistsAdapter(private val clickListener: OnArtistClickListener) : RecyclerView.Adapter<ArtistsAdapter.ArtistViewHolder>(){
 
     var artists :List<Artist> = emptyList()
         set(value) {
+            val diffCallback = ArtistDiffCallback(field, value)
+            val diffResult = DiffUtil.calculateDiff(diffCallback)
             field = value
-            notifyDataSetChanged()
+            diffResult.dispatchUpdatesTo(this)
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArtistViewHolder {

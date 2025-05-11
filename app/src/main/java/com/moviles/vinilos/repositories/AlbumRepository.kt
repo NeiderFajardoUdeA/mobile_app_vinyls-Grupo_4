@@ -23,11 +23,11 @@ class AlbumRepository (val application: Application, private val albumsDao: Albu
                 remoteAlbums
             } catch (e: Exception) {
                 //Si el servicio falla, devolver caché local
-                albumsDao.getAlbums() ?: emptyList()
+                albumsDao.getAlbums()
             }
         } else {
             //Devolver solo caché local
-            albumsDao.getAlbums() ?: emptyList()
+            albumsDao.getAlbums()
         }
     }
 }

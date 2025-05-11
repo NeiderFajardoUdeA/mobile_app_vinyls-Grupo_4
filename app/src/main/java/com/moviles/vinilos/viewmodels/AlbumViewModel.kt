@@ -61,10 +61,6 @@ class AlbumViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-   fun getAlbumById(albumId: Int): Album? {
-        return albums.value?.get(albumId)
-    }
-
     fun onNetworkErrorShown() {
         _isNetworkErrorShown.value = true
     }
