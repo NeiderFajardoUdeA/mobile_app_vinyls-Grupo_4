@@ -44,7 +44,7 @@ public class ArtistsUtils {
     }
 
     public static void verTituloArtist() {
-        onView(allOf(withId(R.id.artistTitle), withParent(withParentIndex(0))));
+        onView(allOf(withId(R.id.artistsTitle), withParent(withParentIndex(0))));
     }
 
     public static void buscarArtistByName(String name) {

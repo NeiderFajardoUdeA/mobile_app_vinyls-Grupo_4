@@ -23,11 +23,11 @@ class ArtistRepository (val application: Application, private val artistsDao: Ar
                 remoteArtists
             } catch (e: Exception) {
                 //Si el servicio falla, devolver caché local
-                artistsDao.getArtists() ?: emptyList()
+                artistsDao.getArtists()
             }
         } else {
             //Devolver solo caché local
-            artistsDao.getArtists() ?: emptyList()
+            artistsDao.getArtists()
         }
     }
 }

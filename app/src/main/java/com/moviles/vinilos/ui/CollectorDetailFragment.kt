@@ -32,8 +32,7 @@ class CollectorDetailFragment : Fragment() {
         val activity = requireNotNull(this.activity) {
             "You can only access the viewModel after onActivityCreated()"
         }
-        viewModel = ViewModelProvider(activity, CollectorViewModel.Factory(activity.application))
-            .get(CollectorViewModel::class.java)
+        viewModel = ViewModelProvider(activity, CollectorViewModel.Factory(activity.application))[CollectorViewModel::class.java]
         // Observa los cambios en los coleccionistas
         viewModel!!.collectors.observe(viewLifecycleOwner) { collectorList ->
             val args: CollectorDetailFragmentArgs by navArgs()
