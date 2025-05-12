@@ -3,7 +3,7 @@
 ## Integrantes
 - **Daniel Andrade Suárez**
 - **Daniel Oicatá Hernández**
-- **Juan Camilo Mora**
+- **Juan Camilo Mora García**
 - **Neider Alejandro Fajardo**
 
 ## Pasos para ejecutar proyecto localmente:
