@@ -1,4 +1,5 @@
 # **Vinyls Mobile App (Grupo 4)**
+<img src="app/src/main/res/mipmap-hdpi/vinilo.png" alt="Descripción de la imagen" width="200"/>
 ## Integrantes
 - **Daniel Andrade Suárez**
 - **Daniel Oicatá Hernández**
