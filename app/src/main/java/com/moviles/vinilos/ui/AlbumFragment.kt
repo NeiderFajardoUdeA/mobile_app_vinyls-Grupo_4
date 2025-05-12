@@ -1,7 +1,6 @@
 package com.moviles.vinilos.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,9 +29,6 @@ class AlbumFragment : Fragment(), OnAlbumClickListener {
     ): View {
         _binding = AlbumFragmentBinding.inflate(inflater, container, false)
         viewModelAdapter = AlbumsAdapter(this)
-
-
-
         return binding.root
     }
 
@@ -60,17 +56,16 @@ class AlbumFragment : Fragment(), OnAlbumClickListener {
             "You can only access the viewModel after onActivityCreated()"
         }
         activity.actionBar?.title = getString(R.string.title_albums)
-        viewModel = ViewModelProvider(this, AlbumViewModel.Factory(activity.application))
-            .get(AlbumViewModel::class.java)
+        viewModel = ViewModelProvider(this, AlbumViewModel.Factory(activity.application))[AlbumViewModel::class.java]
 
         //Observamos cambios en la lista filtrada
-        viewModel.albums.observe(viewLifecycleOwner, Observer { list ->
+        viewModel.albums.observe(viewLifecycleOwner) { list ->
             viewModelAdapter?.albums = list
-        })
+        }
 
-        viewModel.eventNetworkError.observe(viewLifecycleOwner, Observer { isError ->
+        viewModel.eventNetworkError.observe(viewLifecycleOwner) { isError ->
             if (isError) onNetworkError()
-        })
+        }
     }
 
     private fun onNetworkError() {

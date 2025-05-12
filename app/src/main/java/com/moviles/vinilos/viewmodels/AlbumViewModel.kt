@@ -1,14 +1,17 @@
 package com.moviles.vinilos.viewmodels
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.*
+import com.moviles.vinilos.database.VinylRoomDatabase
 import com.moviles.vinilos.models.Album
 import com.moviles.vinilos.repositories.AlbumRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class AlbumViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val albumsRepository = AlbumRepository(application)
+    private val albumsRepository = AlbumRepository(application, VinylRoomDatabase.getDatabase(application.applicationContext).albumsDao())
 
     //Lista completa
     private var allAlbums: List<Album> = emptyList()
@@ -31,15 +34,20 @@ class AlbumViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     private fun refreshDataFromNetwork() {
-        albumsRepository.refreshData({ list ->
-            //Guardamos lista completa y actualizamos LiveData
-            allAlbums = list
-            _albums.value = list
-            _eventNetworkError.value = false
-            _isNetworkErrorShown.value = false
-        }, {
+        try {
+            viewModelScope.launch(Dispatchers.Default){
+                withContext(Dispatchers.IO){
+                    val data = albumsRepository.refreshData()
+                    allAlbums = data
+                    _albums.postValue(data)
+                }
+                _eventNetworkError.postValue(false)
+                _isNetworkErrorShown.postValue(false)
+            }
+        }
+        catch (e:Exception){
             _eventNetworkError.value = true
-        })
+        }
     }
 
     fun searchAlbums(query: String) {
@@ -51,10 +59,6 @@ class AlbumViewModel(application: Application) : AndroidViewModel(application) {
                 it.name.contains(query, ignoreCase = true)
             }
         }
-    }
-
-   fun getAlbumById(albumId: Int): Album? {
-        return albums.value?.get(albumId)
     }
 
     fun onNetworkErrorShown() {
