@@ -3,7 +3,6 @@ package com.moviles.vinilos
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
-import com.moviles.vinilos.R
 
 class MainActivity : AppCompatActivity() {
 

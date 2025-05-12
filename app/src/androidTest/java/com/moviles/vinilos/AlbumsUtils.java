@@ -22,6 +22,10 @@ public class AlbumsUtils {
         return onView(allOf(withId(R.id.albumesButton), withText(R.string.boton_menu_albums), isDisplayed()));
     }
 
+    public static ViewInteraction verBtnVolver() {
+        return onView(allOf(withId(R.id.volverButton), withText(R.string.volver), isDisplayed()));
+    }
+
     public static ViewInteraction verBtnBackDetail() {
         return onView(allOf(withId(R.id.backIcon), isDisplayed()));
     }
@@ -83,13 +87,5 @@ public class AlbumsUtils {
     public static void seleccionarAlbumPosicion(int position) {
         onView(withId(R.id.albumsRv))
                 .perform(RecyclerViewActions.actionOnItemAtPosition(position, click()));
-    }
-
-    public static void clickBotonVolver(){
-        onView(withId(R.id.volverButton)).perform(click());
-    }
-
-    public static void clickBackIcon(){
-        onView(withId(R.id.backIcon)).perform(click());
     }
 }
