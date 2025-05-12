@@ -184,21 +184,31 @@ public class CollectorsTest {
         //When selecciono el primer coleccionista de la lista
         CollectorsUtils.seleccionarColeccionistaPosicion(0);
 
+        //And veo que aparece el resumen del coleccionista
+        CollectorsUtils.validarSubtituloResumen();
+
         //And espera asincrona para la carga de datos
         try {
-            Thread.sleep(2000);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        //And veo que aparece el resumen del coleccionista
-        CollectorsUtils.validarSubtituloResumen();
+        //And el boton de volver esta
+        ViewInteraction btnVolver = CollectorsUtils.verBtnVolver();
 
         //And doy clic en el boton volver
-        CollectorsUtils.clickBotonVolver();
+        CollectorsUtils.clickBtn(btnVolver);
 
         //And regreso a la lista de coleccionistas
         CollectorsUtils.validarListaColeccionista();
+
+        //And espera asincrona para la carga de datos
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         //And click en el segundo coleccionista de la lista
         CollectorsUtils.seleccionarColeccionistaPosicion(1);
@@ -225,21 +235,28 @@ public class CollectorsTest {
         //When selecciono el primer coleccionista de la lista
         CollectorsUtils.seleccionarColeccionistaPosicion(0);
 
+        //And veo que aparece el resumen del coleccionista
+        CollectorsUtils.validarSubtituloResumen();
+
         //And espera asincrona para la carga de datos
         try {
-            Thread.sleep(2000);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        //And veo que aparece el resumen del coleccionista
-        CollectorsUtils.validarSubtituloResumen();
+        //And busco que el boton este en la vista
+        ViewInteraction backBtn = CollectorsUtils.verBtnBackDetail();
 
-        //And doy clic en el icono volver
-        CollectorsUtils.clickBackIcon();
+        //And doy clic en el ícono "Atras"
+        CollectorsUtils.clickBtn(backBtn);
 
-        //And regreso a la lista de coleccionistas
-        CollectorsUtils.validarListaColeccionista();
+        //And espera asincrona para la carga de datos
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         //And click en el segundo coleccionista de la lista
         CollectorsUtils.seleccionarColeccionistaPosicion(1);

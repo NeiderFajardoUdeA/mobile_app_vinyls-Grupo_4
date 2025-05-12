@@ -1,5 +1,4 @@
 package com.moviles.vinilos.models
-
 import androidx.room.*
 
 @Entity(tableName = "albums_table")

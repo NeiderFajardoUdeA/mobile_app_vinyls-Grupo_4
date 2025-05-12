@@ -32,8 +32,7 @@ class ArtistDetailFragment : Fragment() {
         val activity = requireNotNull(this.activity) {
             "You can only access the viewModel after onActivityCreated()"
         }
-        viewModel = ViewModelProvider(activity, ArtistViewModel.Factory(activity.application))
-            .get(ArtistViewModel::class.java)
+        viewModel = ViewModelProvider(activity, ArtistViewModel.Factory(activity.application))[ArtistViewModel::class.java]
         // Observa los cambios en los artistas
         viewModel!!.artists.observe(viewLifecycleOwner) { artistList ->
             val args: ArtistDetailFragmentArgs by navArgs()

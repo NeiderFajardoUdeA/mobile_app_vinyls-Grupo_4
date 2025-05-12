@@ -60,16 +60,16 @@ class ArtistFragment : Fragment(), OnArtistClickListener {
         (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.title_artists)
 
         viewModel = ViewModelProvider(this, ArtistViewModel.Factory(activity.application
-        )).get(ArtistViewModel::class.java)
+        ))[ArtistViewModel::class.java]
 
         //Observamos cambios en la lista filtrada
-        viewModel.artists.observe(viewLifecycleOwner, Observer { list ->
+        viewModel.artists.observe(viewLifecycleOwner) { list ->
             viewModelAdapter?.artists = list
-        })
+        }
 
-        viewModel.eventNetworkError.observe(viewLifecycleOwner, Observer { isError ->
+        viewModel.eventNetworkError.observe(viewLifecycleOwner) { isError ->
             if (isError) onNetworkError()
-        })
+        }
     }
 
     private fun onNetworkError() {
