@@ -3,7 +3,7 @@
 ## Integrantes
 - **Daniel Andrade Suárez**
 - **Daniel Oicatá Hernández**
-- **Juan Camilo Mora**
+- **Juan Camilo Mora García**
 - **Neider Alejandro Fajardo**
 
 ## Pasos para ejecutar proyecto localmente:
@@ -68,7 +68,7 @@ Para ejecutar la aplicación se requiere un emulador Android con SDK 35:
 
 - Con todo configurado: Seleccionar el emulador creado en la barra superior de Android Studio. Hacer clic en el botón **Run**. Android Studio compilará y desplegará la app en el emulador.
 
-- Para las pruebas automatizadas con Espresso, el emulador configurado es suficiente pero en este caso se debe ir al directorio `com.moviles.vinilos(androidTest)`, dar clic derecho en `AlbumTest` y luego `Run 'AlbumTest'`.
+- Para las pruebas automatizadas con Espresso, el emulador configurado es suficiente pero en este caso se debe ir al directorio `com.moviles.vinilos(androidTest)`, dar clic derecho en `AlbumTest` y luego `Run 'AlbumTest'`. Esto se repite para todos los test creados: `ArtistTest` y `CollectorTest`.
 
 **Tecnologías y Librerías Principales**
 
