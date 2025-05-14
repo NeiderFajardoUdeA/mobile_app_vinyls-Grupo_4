@@ -1,6 +1,7 @@
 package com.moviles.vinilos.viewmodels
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
 import com.moviles.vinilos.database.VinylRoomDatabase
 import com.moviles.vinilos.models.Album
@@ -8,6 +9,8 @@ import com.moviles.vinilos.repositories.AlbumRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import androidx.lifecycle.viewModelScope
+import org.json.JSONObject
 
 class AlbumViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -28,6 +31,9 @@ class AlbumViewModel(application: Application) : AndroidViewModel(application) {
     private val _isNetworkErrorShown = MutableLiveData(false)
     val isNetworkErrorShown: LiveData<Boolean>
         get() = _isNetworkErrorShown
+
+    private val _albumCreated = MutableLiveData<Boolean>()
+    val albumCreated: LiveData<Boolean> = _albumCreated
 
     init {
         refreshDataFromNetwork()
@@ -57,6 +63,19 @@ class AlbumViewModel(application: Application) : AndroidViewModel(application) {
         } else {
             _albums.value = allAlbums.filter {
                 it.name.contains(query, ignoreCase = true)
+            }
+        }
+    }
+
+    fun createAlbum(postParams: Map<String, String>) {
+        viewModelScope.launch {
+            try {
+                val json = JSONObject(postParams)
+                val result = albumsRepository.createAlbum(json)
+                Log.d("crear", "res: $result")
+                _albumCreated.postValue(true)
+            } catch (e: Exception) {
+                _albumCreated.postValue(false)
             }
         }
     }

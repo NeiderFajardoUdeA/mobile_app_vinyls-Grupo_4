@@ -1,12 +1,12 @@
 package com.moviles.vinilos.repositories
 
-import android.util.LruCache
 import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
 import com.moviles.vinilos.models.Album
 import com.moviles.vinilos.network.AlbumServiceAdapter
 import com.moviles.vinilos.database.AlbumsDao
+import org.json.JSONObject
 
 class AlbumRepository (val application: Application, private val albumsDao: AlbumsDao){
     suspend fun refreshData(): List<Album> {
@@ -29,6 +29,15 @@ class AlbumRepository (val application: Application, private val albumsDao: Albu
         } else {
             //Devolver solo caché local
             albumsDao.getAlbums()
+        }
+    }
+
+    suspend fun createAlbum(objeto: JSONObject): JSONObject? {
+        return try {
+            val album = AlbumServiceAdapter.getInstance(application).createAlbum(objeto)
+            album
+        } catch (e: Exception) {
+            null
         }
     }
 }

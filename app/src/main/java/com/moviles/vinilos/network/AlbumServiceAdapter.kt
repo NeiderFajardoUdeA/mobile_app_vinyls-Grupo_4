@@ -16,7 +16,7 @@ import kotlin.coroutines.suspendCoroutine
 
 class AlbumServiceAdapter(context: Context) {
     companion object{
-        const val BASE_URL= "https://backvynils-q6yc.onrender.com/"
+        const val BASE_URL= "https://masteralfondoque.azurewebsites.net/api/"
         private var instance: AlbumServiceAdapter? = null
         fun getInstance(context: Context) =
             instance ?: synchronized(this) {
@@ -31,7 +31,7 @@ class AlbumServiceAdapter(context: Context) {
     }
 
     suspend fun getAlbums() = suspendCoroutine<List<Album>>{ cont->
-        requestQueue.add(getRequest("albums",
+        requestQueue.add(getRequest("Albums/combo",
             { response ->
                 val resp = JSONArray(response)
                 val list = mutableListOf<Album>()
@@ -48,7 +48,7 @@ class AlbumServiceAdapter(context: Context) {
 
     suspend fun createAlbum(body: JSONObject): JSONObject = suspendCoroutine { cont ->
         val request = postRequest(
-            "albums",
+            "Albums",
             body,
             { response ->
                 cont.resume(response)
@@ -57,7 +57,6 @@ class AlbumServiceAdapter(context: Context) {
                 cont.resumeWithException(error)
             }
         )
-
         requestQueue.add(request)
     }
 

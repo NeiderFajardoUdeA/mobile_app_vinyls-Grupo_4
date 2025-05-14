@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -32,13 +33,30 @@ class CreateAlbumFragment: Fragment() {
             "You can only access the viewModel after onActivityCreated()"
         }
         viewModel = ViewModelProvider(activity, AlbumViewModel.Factory(activity.application))[AlbumViewModel::class.java]
-        val cancelarButton = view.findViewById<Button>(R.id.btnCancelar)
-        cancelarButton.setOnClickListener {
-            findNavController().navigate(R.id.action_createAlbumFragment_to_albumFragment)
+
+        binding.btnSubmit.setOnClickListener {
+            val postParams = mapOf(
+                "name" to binding.nameAlbum.text.toString(),
+                "cover" to binding.cover.text.toString(),
+                "releaseDate" to binding.ReleaseDate.text.toString(),
+                "description" to binding.Description.text.toString(),
+                "genre" to binding.Genre.text.toString(),
+                "recordLabel" to binding.RecordLabel.text.toString()
+            )
+
+            viewModel?.createAlbum(postParams)
         }
 
-        val crearButton = view.findViewById<Button>(R.id.btnSubmit)
-        crearButton.setOnClickListener {
+        viewModel?.albumCreated?.observe(viewLifecycleOwner) { created ->
+            if (created == true) {
+                findNavController().navigate(R.id.action_createAlbumFragment_to_albumFragment)
+            } else {
+                Toast.makeText(requireContext(), "Error creando álbum", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        val cancelarButton = view.findViewById<Button>(R.id.btnCancelar)
+        cancelarButton.setOnClickListener {
             findNavController().navigate(R.id.action_createAlbumFragment_to_albumFragment)
         }
 
