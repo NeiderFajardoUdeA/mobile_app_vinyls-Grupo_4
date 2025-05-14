@@ -1,5 +1,6 @@
 package com.moviles.vinilos.repositories
 
+import android.util.LruCache
 import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
@@ -17,7 +18,7 @@ class AlbumRepository (val application: Application, private val albumsDao: Albu
                 val remoteAlbums = AlbumServiceAdapter.getInstance(application).getAlbums()
 
                 //Almacenar en caché local (DAO)
-                remoteAlbums.forEach { album -> albumsDao.insert(album)}
+                remoteAlbums.forEach { album -> albumsDao.insert(album) }
 
                 //Devolver los datos frescos del servicio
                 remoteAlbums
