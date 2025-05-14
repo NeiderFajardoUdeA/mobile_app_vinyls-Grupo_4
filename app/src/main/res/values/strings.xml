@@ -11,4 +11,13 @@
     <string name="hinted_search_text_collector">Buscar coleccionistas</string>
     <string name="resumen">Resumen:</string>
     <string name="volver">Volver</string>
+    <string name="create_albums">Crear álbum</string>
+    <string name="create_album">Create Album</string>
+    <string name="nombre_lbum">Nombre álbum</string>
+    <string name="cover_lbum_url">Cover Álbum (URL)</string>
+    <string name="fecha_de_lanzamiento_yyyy_mm_dd">Fecha de lanzamiento (YYYY-mm-dd)</string>
+    <string name="descripci_n">Descripción</string>
+    <string name="g_nero">Género</string>
+    <string name="etiqueta_del_lbum">Etiqueta del álbum</string>
+    <string name="cancelar">Cancelar</string>
 </resources>
