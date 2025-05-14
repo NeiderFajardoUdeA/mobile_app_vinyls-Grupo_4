@@ -4,10 +4,12 @@ import android.content.Context
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.moviles.vinilos.models.Album
 import org.json.JSONArray
+import org.json.JSONObject
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
@@ -44,7 +46,26 @@ class AlbumServiceAdapter(context: Context) {
             }))
     }
 
+    suspend fun createAlbum(body: JSONObject): JSONObject = suspendCoroutine { cont ->
+        val request = postRequest(
+            "albums",
+            body,
+            { response ->
+                cont.resume(response)
+            },
+            { error ->
+                cont.resumeWithException(error)
+            }
+        )
+
+        requestQueue.add(request)
+    }
+
     private fun getRequest(path:String, responseListener: Response.Listener<String>, errorListener: Response.ErrorListener): StringRequest {
         return StringRequest(Request.Method.GET, BASE_URL+path, responseListener,errorListener)
+    }
+
+    private fun postRequest(path: String, body: JSONObject,  responseListener: Response.Listener<JSONObject>, errorListener: Response.ErrorListener ):JsonObjectRequest{
+        return  JsonObjectRequest(Request.Method.POST, BASE_URL+path, body, responseListener, errorListener)
     }
 }
