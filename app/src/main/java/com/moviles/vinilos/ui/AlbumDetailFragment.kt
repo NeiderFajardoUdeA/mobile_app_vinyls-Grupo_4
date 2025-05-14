@@ -13,6 +13,7 @@ import android.widget.ImageView
 import com.moviles.vinilos.viewmodels.AlbumViewModel
 import com.moviles.vinilos.R
 import androidx.navigation.fragment.findNavController
+import com.moviles.vinilos.models.Track
 
 class AlbumDetailFragment : Fragment() {
     private var _binding: AlbumDetailBinding? = null
@@ -42,6 +43,11 @@ class AlbumDetailFragment : Fragment() {
                 binding.album = it
                 binding.albumReleaseYear.text = it.releaseDate.substring(0, 4)
             }
+            // Esto es solo para probar que funciona
+            //if (album != null) {
+            //    viewModel!!.addTrackToAlbum(
+            //        album.albumId, "track 1", "3:00")
+            // }
         }
         val volverButton = view.findViewById<Button>(R.id.volverButton)
         volverButton.setOnClickListener {
