@@ -267,4 +267,19 @@ public class AlbumTest {
         //Then debo ver ahora el resumen del segundo album
         AlbumsUtils.validarSubtituloResumen();
     }
+
+    @Test
+    public void crearAlbumVistaAlbum() {}
+
+    @Test
+    public void crearAlbumValidarCreacion() {}
+
+    @Test
+    public void crearAlbumDuplicado() {}
+
+    @Test
+    public void crearAlbumVolverHome() {}
+
+    @Test
+    public void crearAlbumVerDetalle() {}
 }
