@@ -443,5 +443,68 @@ public class AlbumTest {
     public void crearAlbumDuplicado() {}
 
     @Test
-    public void crearAlbumVerDetalle() {}
+    public void crearAlbumVerDetalle() {
+        //Given que estoy en el home de la app
+        ViewInteraction albumesBtn = AlbumsUtils.verBtnAlbums();
+
+        //And da clic en el boton "Albumes"
+        AlbumsUtils.clickBtn(albumesBtn);
+
+        //And entra al listado de albumes ve el titulo de la vista
+        AlbumsUtils.validamosTituloVistaAlbumes();
+
+        //Espera asincrona para la carga de datos
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //And valida que este el boton de crear album
+        ViewInteraction createBtn = AlbumsUtils.verBtnCrear();
+
+        //And da clic en el boton de crear
+        AlbumsUtils.clickBtn(createBtn);
+
+        //And llenamos el formulario
+        String nombreAlbum = "AAlbum 4";
+        String coverAlbum = "https://cdn.venngage.com/template/thumbnail/small/79879260-0211-46bb-abcd-968fb4e2c0ea.webp";
+        String releaseDate = "2022-12-18";
+        String description = "Descripcion album 4";
+        String genre = "metal";
+        String recordLabel = "Etiqueta Album 4";
+
+        //And llena el formulario
+        AlbumsUtils.llenarFormulario(nombreAlbum, coverAlbum, releaseDate, description,
+                genre, recordLabel);
+
+        //And valida que este el boton de crear album en la vista album
+        ViewInteraction submitBtn = AlbumsUtils.verBtnSubmit();
+
+        //When da clic en el boton de submit
+        AlbumsUtils.clickBtn(submitBtn);
+
+        //Espera asincrona para la carga de datos
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //And valido que estoy en el listado de albumes
+        AlbumsUtils.validamosTituloVistaAlbumes();
+
+        //When presiono un album con título específico
+        AlbumsUtils.seleccionarAlbumNombre(nombreAlbum);
+
+        //And espera asincrona para la carga de datos
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //Then debo ver un título con el nombre del album
+        AlbumsUtils.validarTituloAlbum(nombreAlbum);
+    }
 }
