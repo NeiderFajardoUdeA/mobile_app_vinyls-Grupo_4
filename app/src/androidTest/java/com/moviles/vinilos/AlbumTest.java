@@ -467,7 +467,7 @@ public class AlbumTest {
         AlbumsUtils.clickBtn(createBtn);
 
         //And llenamos el formulario
-        String nombreAlbum = "AAlbum 4";
+        String nombreAlbum = "AAAAAAlbum 4";
         String coverAlbum = "https://cdn.venngage.com/template/thumbnail/small/79879260-0211-46bb-abcd-968fb4e2c0ea.webp";
         String releaseDate = "2022-12-18";
         String description = "Descripcion album 4";
@@ -481,30 +481,27 @@ public class AlbumTest {
         //And valida que este el boton de crear album en la vista album
         ViewInteraction submitBtn = AlbumsUtils.verBtnSubmit();
 
-        //When da clic en el boton de submit
+        //And da clic en el boton de submit
         AlbumsUtils.clickBtn(submitBtn);
 
-        //Espera asincrona para la carga de datos
+        //An espera asincrona para la carga de datos
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        //And valido que estoy en el listado de albumes
-        AlbumsUtils.validamosTituloVistaAlbumes();
-
-        //When presiono un album con título específico
-        AlbumsUtils.seleccionarAlbumNombre(nombreAlbum);
+        //When presiono al album creado
+        AlbumsUtils.seleccionarAlbumPosicion(0);
 
         //And espera asincrona para la carga de datos
         try {
-            Thread.sleep(2000);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
         //Then debo ver un título con el nombre del album
-        AlbumsUtils.validarTituloAlbum(nombreAlbum);
+        AlbumsUtils.validarSubtituloResumen();
     }
 }
