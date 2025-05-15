@@ -16,7 +16,7 @@ import kotlin.coroutines.suspendCoroutine
 
 class AlbumServiceAdapter(context: Context) {
     companion object{
-        const val BASE_URL= "https://backvynils-q6yc.onrender.com/"
+        const val BASE_URL= "https://masteralfondoque.azurewebsites.net/api/"
         private var instance: AlbumServiceAdapter? = null
         fun getInstance(context: Context) =
             instance ?: synchronized(this) {
@@ -31,13 +31,13 @@ class AlbumServiceAdapter(context: Context) {
     }
 
     suspend fun getAlbums() = suspendCoroutine<List<Album>>{ cont->
-        requestQueue.add(getRequest("albums",
+        requestQueue.add(getRequest("Albums/combo",
             { response ->
                 val resp = JSONArray(response)
                 val list = mutableListOf<Album>()
                 for (i in 0 until resp.length()) {
                     val item = resp.getJSONObject(i)
-                    list.add(i, Album(albumId = item.getInt("id"),name = item.getString("name"), cover = item.getString("cover"), recordLabel = item.getString("recordLabel"), releaseDate = item.getString("releaseDate"), genre = item.getString("genre"), description = item.getString("description")))
+                    list.add(i, Album(albumId = item.getInt("albumId"),name = item.getString("name"), cover = item.getString("cover"), recordLabel = item.getString("recordLabel"), releaseDate = item.getString("releaseDate"), genre = item.getString("genre"), description = item.getString("description")))
                 }
                 cont.resume(list)
             },
@@ -48,7 +48,7 @@ class AlbumServiceAdapter(context: Context) {
 
     suspend fun createAlbum(body: JSONObject): JSONObject = suspendCoroutine { cont ->
         val request = postRequest(
-            "albums",
+            "Albums",
             body,
             { response ->
                 cont.resume(response)

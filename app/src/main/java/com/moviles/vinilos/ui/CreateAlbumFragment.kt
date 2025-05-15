@@ -37,7 +37,7 @@ class CreateAlbumFragment: Fragment() {
         binding.btnSubmit.setOnClickListener {
             val postParams = mapOf(
                 "name" to binding.nameAlbum.text.toString(),
-                "cover" to binding.cover.text.toString(),
+                "cover" to binding.coverAlbum.text.toString(),
                 "releaseDate" to binding.ReleaseDate.text.toString(),
                 "description" to binding.Description.text.toString(),
                 "genre" to binding.Genre.text.toString(),

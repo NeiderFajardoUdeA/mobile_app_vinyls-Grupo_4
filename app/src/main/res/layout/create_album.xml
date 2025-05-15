@@ -81,7 +81,7 @@
                 app:boxCornerRadiusBottomStart="12dp"
                 app:boxCornerRadiusBottomEnd="12dp">
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/cover"
+                    android:id="@+id/coverAlbum"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textUri"/>
