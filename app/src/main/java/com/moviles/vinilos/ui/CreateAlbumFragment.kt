@@ -49,7 +49,11 @@ class CreateAlbumFragment: Fragment() {
 
         viewModel?.albumCreated?.observe(viewLifecycleOwner) { created ->
             if (created == true) {
-                findNavController().navigate(R.id.action_createAlbumFragment_to_albumFragment)
+                Toast.makeText(requireContext(), "Álbum creado correctamente", Toast.LENGTH_SHORT).show()
+
+                //Limpiar back stack y navegar al fragmento principal
+                findNavController().popBackStack(R.id.albumFragment, false)
+
             } else {
                 Toast.makeText(requireContext(), "Error creando álbum", Toast.LENGTH_SHORT).show()
             }

@@ -71,8 +71,7 @@ class AlbumViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch {
             try {
                 val json = JSONObject(postParams)
-                val result = albumsRepository.createAlbum(json)
-                Log.d("crear", "res: $result")
+                albumsRepository.createAlbum(json)
                 _albumCreated.postValue(true)
             } catch (e: Exception) {
                 _albumCreated.postValue(false)
