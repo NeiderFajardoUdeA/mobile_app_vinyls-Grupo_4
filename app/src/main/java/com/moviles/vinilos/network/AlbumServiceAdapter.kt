@@ -53,18 +53,23 @@ class AlbumServiceAdapter(context: Context) {
             }))
     }
 
-    suspend fun addTrack(albumId: Int, track: Track) = suspendCoroutine<Unit>{ cont->
+    suspend fun addTrack(albumId: Int, track: Track) = suspendCoroutine<Unit> { cont ->
         val body = "{ \"name\": \"${track.name}\", \"duration\": \"${track.duration}\" }"
-        requestQueue.add(
-            postRequest("albums/$albumId/tracks", body,
-                { response ->
-                    cont.resume(Unit)
-                    Log.d("AlbumServiceAdapter", "addTrack: $response")
-                },
-                {
-                    cont.resumeWithException(it)
-                }))
-
+        try {
+            requestQueue.add(
+                postRequest("albums/$albumId/tracks", body,
+                    { response ->
+                        cont.resume(Unit)
+                        Log.d("AlbumServiceAdapter", "addTrack: $response")
+                    },
+                    {
+                        cont.resumeWithException(it)
+                    })
+            )
+        } catch (e: Exception) {
+            cont.resumeWithException(e)
+            Log.e("AlbumServiceAdapter", "Error adding track: ${e.message}", e)
+        }
     }
 
     private fun getRequest(path:String, responseListener: Response.Listener<String>, errorListener: Response.ErrorListener): StringRequest {

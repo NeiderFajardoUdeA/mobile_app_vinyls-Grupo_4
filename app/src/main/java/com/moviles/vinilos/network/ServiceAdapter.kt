@@ -8,6 +8,7 @@ import com.android.volley.VolleyError
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.moviles.vinilos.models.Album
+import com.moviles.vinilos.models.Track
 import org.json.JSONArray
 
 class ServiceAdapter(context: Context) {
@@ -32,7 +33,12 @@ class ServiceAdapter(context: Context) {
                 val list = mutableListOf<Album>()
                 for (i in 0 until resp.length()) {
                     val item = resp.getJSONObject(i)
-                    list.add(i, Album(albumId = item.getInt("id"),name = item.getString("name"), cover = item.getString("cover"), recordLabel = item.getString("recordLabel"), releaseDate = item.getString("releaseDate"), genre = item.getString("genre"), description = item.getString("description"), tracks = mutableListOf()))
+                    val tracks = mutableListOf<Track>()
+                    for (j in 0 until item.getJSONArray("tracks").length()) {
+                        val track = item.getJSONArray("tracks").getJSONObject(j)
+                        tracks.add(Track(id = track.getInt("id"), name = track.getString("name"), duration = track.getString("duration")))
+                    }
+                    list.add(i, Album(albumId = item.getInt("id"),name = item.getString("name"), cover = item.getString("cover"), recordLabel = item.getString("recordLabel"), releaseDate = item.getString("releaseDate"), genre = item.getString("genre"), description = item.getString("description"), tracks = tracks))
                 }
                 onComplete(list)
             },
