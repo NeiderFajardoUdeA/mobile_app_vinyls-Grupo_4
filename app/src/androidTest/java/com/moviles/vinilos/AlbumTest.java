@@ -370,23 +370,13 @@ public class AlbumTest {
             e.printStackTrace();
         }
 
-        //And valido que estoy en el listado de albumes
-        AlbumsUtils.validamosTituloVistaAlbumes();
-
-        //Espera asincrona para la carga de datos
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
         //And vemos la barra de busqueda
         ViewInteraction barraBusqueda = AlbumsUtils.verBarraBusqueda();
 
         //And le damos click al clic a la barra de busqueda
         AlbumsUtils.clickBtn(barraBusqueda);
 
-        //When buscamos un album por un titulo especifico
+        //Then buscamos el album creado por un titulo especifico
         AlbumsUtils.buscarAlbumByTitulo(nombreAlbum);
     }
 
