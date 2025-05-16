@@ -16,7 +16,8 @@ import kotlin.coroutines.suspendCoroutine
 
 class AlbumServiceAdapter(context: Context) {
     companion object{
-        const val BASE_URL= "https://backvynils-q6yc.onrender.com/"
+        const val BASE_URL= "http://ec2-50-17-98-222.compute-1.amazonaws.com:3000/"
+        // const val BASE_URL= "https://backvynils-q6yc.onrender.com/"
         // This is the URL for the emulator, for testing purposes
         //const val BASE_URL = "http://10.0.2.2:3000/"
         private var instance: AlbumServiceAdapter? = null
