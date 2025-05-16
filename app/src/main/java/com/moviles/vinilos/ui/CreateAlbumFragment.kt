@@ -54,6 +54,9 @@ class CreateAlbumFragment: Fragment() {
                 //Limpiar back stack y navegar al fragmento principal
                 findNavController().popBackStack(R.id.albumFragment, false)
 
+                //Cambiamos estado de album created
+                viewModel?.resetAlbumCreated()
+
             } else {
                 Toast.makeText(requireContext(), "Error creando álbum", Toast.LENGTH_SHORT).show()
             }

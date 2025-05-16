@@ -32,8 +32,8 @@ class AlbumViewModel(application: Application) : AndroidViewModel(application) {
     val isNetworkErrorShown: LiveData<Boolean>
         get() = _isNetworkErrorShown
 
-    private val _albumCreated = MutableLiveData<Boolean>()
-    val albumCreated: LiveData<Boolean> = _albumCreated
+    private val _albumCreated = MutableLiveData<Boolean?>()
+    val albumCreated: MutableLiveData<Boolean?> = _albumCreated
 
     init {
         refreshDataFromNetwork()
@@ -77,6 +77,10 @@ class AlbumViewModel(application: Application) : AndroidViewModel(application) {
                 _albumCreated.postValue(false)
             }
         }
+    }
+
+    fun resetAlbumCreated() {
+        _albumCreated.value = null
     }
 
     fun onNetworkErrorShown() {

@@ -491,8 +491,11 @@ public class AlbumTest {
             e.printStackTrace();
         }
 
+        //And valida que este el boton de crear album
+        ViewInteraction createBtn2 = AlbumsUtils.verBtnCrear();
+
         //And da clic en el boton de crear
-        AlbumsUtils.clickBtn(createBtn);
+        AlbumsUtils.clickBtn(createBtn2);
 
         //And llena el formulario de nuevo
         AlbumsUtils.llenarFormulario(nombreAlbum, coverAlbum, releaseDate, description,
