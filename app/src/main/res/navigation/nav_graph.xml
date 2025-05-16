@@ -40,6 +40,9 @@
         <action
             android:id="@+id/action_albumDetailFragment_to_albumFragment"
             app:destination="@id/albumFragment" />
+        <action
+            android:id="@+id/action_albumDetailFragment_to_trackFragment"
+            app:destination="@id/albumTracksFragment" />
     </fragment>
 
     <fragment
@@ -88,6 +91,36 @@
         <action
             android:id="@+id/action_collectorDetailFragment_to_collectorFragment"
             app:destination="@id/collectorFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/albumTracksFragment"
+        android:name="com.moviles.vinilos.ui.AlbumTracksFragment"
+        android:label="Detalles de las Canciones" >
+        <argument
+            android:name="albumId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_albumTracksFragment_to_albumDetailFragment"
+            app:destination="@id/albumDetailFragment" />
+        <action
+            android:id="@+id/action_albumTracksFragment_to_createTrackFragment"
+            app:destination="@id/createTrackFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/createTrackFragment"
+        android:name="com.moviles.vinilos.ui.CreateTrackFragment"
+        android:label="Crear Canción" >
+        <argument
+            android:name="albumId"
+            app:argType="integer" />
+        <argument
+            android:name="albumName"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_createTrackFragment_to_albumTracksFragment"
+            app:destination="@id/albumTracksFragment" />
     </fragment>
 
 </navigation>

@@ -4,19 +4,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.navArgs
-import com.moviles.vinilos.databinding.AlbumDetailBinding
 import android.widget.Button
 import android.widget.ImageView
-import com.moviles.vinilos.viewmodels.AlbumViewModel
-import com.moviles.vinilos.R
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.moviles.vinilos.models.Track
+import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.moviles.vinilos.R
+import com.moviles.vinilos.databinding.AlbumTracksBinding
+import com.moviles.vinilos.viewmodels.AlbumViewModel
+import com.moviles.vinilos.ui.adapters.TracksAdapter
 
-class AlbumDetailFragment : Fragment() {
-    private var _binding: AlbumDetailBinding? = null
+
+class AlbumTracksFragment: Fragment() {
+    private var _binding: AlbumTracksBinding? = null
     private val binding get() = _binding!!
     private var viewModel: AlbumViewModel? = null
 
@@ -24,7 +26,7 @@ class AlbumDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = AlbumDetailBinding.inflate(inflater, container, false)
+        _binding = AlbumTracksBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -45,26 +47,31 @@ class AlbumDetailFragment : Fragment() {
             album?.let {
                 binding.album = it
                 binding.albumReleaseYear.text = it.releaseDate.substring(0, 4)
+                binding.tracksRV.adapter = TracksAdapter(it.tracks)
+                binding.tracksRV.layoutManager = LinearLayoutManager(context)
             }
-            // Esto es solo para probar que funciona
-            //if (album != null) {
-            //    viewModel!!.addTrackToAlbum(
-            //        album.albumId, "track 1", "3:00")
-            // }
         }
         val volverButton = view.findViewById<Button>(R.id.volverButton)
         volverButton.setOnClickListener {
-            findNavController().navigate(R.id.action_albumDetailFragment_to_albumFragment)
+            val args: AlbumTracksFragmentArgs by navArgs()
+            val albumId = args.albumId
+            val action = AlbumTracksFragmentDirections.actionAlbumTracksFragmentToAlbumDetailFragment(albumId)
+            findNavController().navigate(action)
+
         }
         val volverIcon = view.findViewById<ImageView>(R.id.backIcon)
         volverIcon.setOnClickListener {
-            findNavController().navigate(R.id.action_albumDetailFragment_to_albumFragment)
-        }
-        val verTracksButton = view.findViewById<Button>(R.id.verTracks)
-        verTracksButton.setOnClickListener {
-            val args: AlbumDetailFragmentArgs by navArgs()
+            val args: AlbumTracksFragmentArgs by navArgs()
             val albumId = args.albumId
-            val action = AlbumDetailFragmentDirections.actionAlbumDetailFragmentToTrackFragment(albumId)
+            val action = AlbumTracksFragmentDirections.actionAlbumTracksFragmentToAlbumDetailFragment(albumId)
+            findNavController().navigate(action)
+        }
+        val agregarTracksButton = view.findViewById<Button>(R.id.agregarTrack)
+        agregarTracksButton.setOnClickListener {
+            val args: AlbumTracksFragmentArgs by navArgs()
+            val albumId = args.albumId
+            val nombreAlbum = binding.album?.name ?: "Album"
+            val action = AlbumTracksFragmentDirections.actionAlbumTracksFragmentToCreateTrackFragment(albumId, nombreAlbum)
             findNavController().navigate(action)
         }
     }
