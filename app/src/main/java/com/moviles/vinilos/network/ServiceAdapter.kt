@@ -9,11 +9,11 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.moviles.vinilos.models.Album
 import com.moviles.vinilos.models.Track
+import com.moviles.vinilos.utils.Config
 import org.json.JSONArray
 
 class ServiceAdapter(context: Context) {
     companion object{
-        const val BASE_URL= "http://172.190.114.252/"
         private var instance: ServiceAdapter? = null
         fun getInstance(context: Context) =
             instance ?: synchronized(this) {
@@ -48,6 +48,6 @@ class ServiceAdapter(context: Context) {
     }
 
     private fun getRequest(path:String, responseListener: Response.Listener<String>, errorListener: Response.ErrorListener): StringRequest {
-        return StringRequest(Request.Method.GET, BASE_URL+path, responseListener,errorListener)
+        return StringRequest(Request.Method.GET, Config.BASE_URL+path, responseListener,errorListener)
     }
 }

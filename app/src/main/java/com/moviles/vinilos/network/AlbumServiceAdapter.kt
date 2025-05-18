@@ -9,6 +9,7 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.moviles.vinilos.models.Album
 import com.moviles.vinilos.models.Track
+import com.moviles.vinilos.utils.Config
 import org.json.JSONArray
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
@@ -16,10 +17,6 @@ import kotlin.coroutines.suspendCoroutine
 
 class AlbumServiceAdapter(context: Context) {
     companion object{
-        const val BASE_URL= "http://ec2-50-17-98-222.compute-1.amazonaws.com:3000/"
-        // const val BASE_URL= "https://backvynils-q6yc.onrender.com/"
-        // This is the URL for the emulator, for testing purposes
-        //const val BASE_URL = "http://10.0.2.2:3000/"
         private var instance: AlbumServiceAdapter? = null
         fun getInstance(context: Context) =
             instance ?: synchronized(this) {
@@ -74,11 +71,11 @@ class AlbumServiceAdapter(context: Context) {
     }
 
     private fun getRequest(path:String, responseListener: Response.Listener<String>, errorListener: Response.ErrorListener): StringRequest {
-        return StringRequest(Request.Method.GET, BASE_URL+path, responseListener,errorListener)
+        return StringRequest(Request.Method.GET, Config.BASE_URL+path, responseListener,errorListener)
     }
 
     private fun postRequest(path:String, body:String, responseListener: Response.Listener<String>, errorListener: Response.ErrorListener): StringRequest {
-        return object: StringRequest(Request.Method.POST, BASE_URL+path, responseListener,errorListener){
+        return object: StringRequest(Request.Method.POST, Config.BASE_URL+path, responseListener,errorListener){
             override fun getBody(): ByteArray {
                 return body.toByteArray()
             }
