@@ -8,11 +8,12 @@ import com.android.volley.VolleyError
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.moviles.vinilos.models.Album
+import com.moviles.vinilos.models.Track
+import com.moviles.vinilos.utils.Config
 import org.json.JSONArray
 
 class ServiceAdapter(context: Context) {
     companion object{
-        const val BASE_URL= "http://172.190.114.252/"
         private var instance: ServiceAdapter? = null
         fun getInstance(context: Context) =
             instance ?: synchronized(this) {
@@ -32,7 +33,12 @@ class ServiceAdapter(context: Context) {
                 val list = mutableListOf<Album>()
                 for (i in 0 until resp.length()) {
                     val item = resp.getJSONObject(i)
-                    list.add(i, Album(albumId = item.getInt("id"),name = item.getString("name"), cover = item.getString("cover"), recordLabel = item.getString("recordLabel"), releaseDate = item.getString("releaseDate"), genre = item.getString("genre"), description = item.getString("description")))
+                    val tracks = mutableListOf<Track>()
+                    for (j in 0 until item.getJSONArray("tracks").length()) {
+                        val track = item.getJSONArray("tracks").getJSONObject(j)
+                        tracks.add(Track(id = track.getInt("id"), name = track.getString("name"), duration = track.getString("duration")))
+                    }
+                    list.add(i, Album(albumId = item.getInt("id"),name = item.getString("name"), cover = item.getString("cover"), recordLabel = item.getString("recordLabel"), releaseDate = item.getString("releaseDate"), genre = item.getString("genre"), description = item.getString("description"), tracks = tracks))
                 }
                 onComplete(list)
             },
@@ -42,6 +48,6 @@ class ServiceAdapter(context: Context) {
     }
 
     private fun getRequest(path:String, responseListener: Response.Listener<String>, errorListener: Response.ErrorListener): StringRequest {
-        return StringRequest(Request.Method.GET, BASE_URL+path, responseListener,errorListener)
+        return StringRequest(Request.Method.GET, Config.BASE_URL+path, responseListener,errorListener)
     }
 }

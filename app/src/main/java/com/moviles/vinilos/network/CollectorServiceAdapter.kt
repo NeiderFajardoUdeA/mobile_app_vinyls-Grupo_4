@@ -5,6 +5,7 @@ import com.android.volley.RequestQueue
 import com.android.volley.VolleyError
 import com.android.volley.toolbox.Volley
 import com.moviles.vinilos.models.Collector
+import com.moviles.vinilos.utils.Config
 import org.json.JSONArray
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
@@ -12,7 +13,6 @@ import kotlin.coroutines.suspendCoroutine
 
 class CollectorServiceAdapter(context: Context) {
     companion object{
-        const val BASE_URL= "https://backvynils-q6yc.onrender.com/"
         private var instance: CollectorServiceAdapter? = null
         fun getInstance(context: Context) =
             instance ?: synchronized(this) {
@@ -41,6 +41,6 @@ class CollectorServiceAdapter(context: Context) {
             }))
     }
     private fun getRequest(path: String, responseListener: com.android.volley.Response.Listener<String>, errorListener: com.android.volley.Response.ErrorListener): com.android.volley.toolbox.StringRequest {
-        return com.android.volley.toolbox.StringRequest(com.android.volley.Request.Method.GET, BASE_URL + path, responseListener, errorListener)
+        return com.android.volley.toolbox.StringRequest(com.android.volley.Request.Method.GET, Config.BASE_URL + path, responseListener, errorListener)
     }
 }
