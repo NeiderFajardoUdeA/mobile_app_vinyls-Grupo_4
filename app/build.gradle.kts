@@ -73,6 +73,8 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.room.common.jvm)
+    implementation("com.google.android.material:material:1.11.0")
+    implementation("com.google.android.material:material:1.11.0")
     implementation("com.google.code.gson:gson:2.10.1")
     ksp(libs.androidx.room.compiler)
     androidTestImplementation(libs.androidx.room.testing)

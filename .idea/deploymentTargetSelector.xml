@@ -5,13 +5,16 @@
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="CollectorsTest">
+      <SelectionState runConfigName="crearAlbumValidarCreacion()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="AlbumTest">
+      <SelectionState runConfigName="crearAlbumVerDetalle()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="ArtistTest">
+      <SelectionState runConfigName="crearAlbumDuplicado()">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="crearAlbumVolverHome()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

@@ -6,6 +6,7 @@ import android.net.ConnectivityManager
 import com.moviles.vinilos.models.Album
 import com.moviles.vinilos.network.AlbumServiceAdapter
 import com.moviles.vinilos.database.AlbumsDao
+import org.json.JSONObject
 import com.moviles.vinilos.models.Track
 
 class AlbumRepository (val application: Application, private val albumsDao: AlbumsDao){
@@ -18,7 +19,7 @@ class AlbumRepository (val application: Application, private val albumsDao: Albu
                 val remoteAlbums = AlbumServiceAdapter.getInstance(application).getAlbums()
 
                 //Almacenar en caché local (DAO)
-                remoteAlbums.forEach { album -> albumsDao.insert(album)}
+                remoteAlbums.forEach { album -> albumsDao.insert(album) }
 
                 //Devolver los datos frescos del servicio
                 remoteAlbums
@@ -32,6 +33,12 @@ class AlbumRepository (val application: Application, private val albumsDao: Albu
         }
     }
 
+    suspend fun createAlbum(objeto: JSONObject): JSONObject? {
+        return try {
+            val album = AlbumServiceAdapter.getInstance(application).createAlbum(objeto)
+            album
+        } catch (e: Exception) {
+            null
     suspend fun addTrackToAlbum(albumId: Int, track: Track): Unit {
         val cm = application.baseContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         if (cm.activeNetworkInfo?.isConnected == true) {

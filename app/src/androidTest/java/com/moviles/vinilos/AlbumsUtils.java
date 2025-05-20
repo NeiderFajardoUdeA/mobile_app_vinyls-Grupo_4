@@ -4,9 +4,11 @@ import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.replaceText;
+import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.hasDescendant;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.isEnabled;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withParent;
 import static androidx.test.espresso.matcher.ViewMatchers.withParentIndex;
@@ -92,6 +94,37 @@ public class AlbumsUtils {
                 .perform(RecyclerViewActions.actionOnItemAtPosition(position, click()));
     }
 
+    public static ViewInteraction verBtnCrear() {
+        return onView(allOf(withId(R.id.addIcon), isDisplayed()));
+    }
+
+    public static ViewInteraction verBtnSubmit() {
+        return onView(allOf(withId(R.id.btnSubmit), isDisplayed()));
+    }
+
+    public static void llenarFormulario(String nombreAlbum, String coverAlbum, String releaseDate,
+                                        String description, String genre, String recordLabel) {
+
+        //Llenamos el formulario
+        onView(withId(R.id.nameAlbum))
+                .perform(typeText(nombreAlbum), closeSoftKeyboard());
+
+        onView(withId(R.id.coverAlbum))
+                .perform(typeText(coverAlbum), closeSoftKeyboard());
+
+        onView(withId(R.id.ReleaseDate))
+                .perform(typeText(releaseDate), closeSoftKeyboard());
+
+        onView(withId(R.id.Description))
+                .perform(typeText(description), closeSoftKeyboard());
+
+        onView(withId(R.id.Genre))
+                .perform(typeText(genre), closeSoftKeyboard());
+
+        onView(withId(R.id.RecordLabel))
+                .perform(typeText(recordLabel), closeSoftKeyboard());      
+    }
+    
     public static void clickToViewTrackButton() {
         onView(withId(R.id.verTracks)).perform(click());
     }
