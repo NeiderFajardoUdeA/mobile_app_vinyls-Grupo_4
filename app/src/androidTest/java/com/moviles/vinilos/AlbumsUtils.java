@@ -12,12 +12,15 @@ import static androidx.test.espresso.matcher.ViewMatchers.withParent;
 import static androidx.test.espresso.matcher.ViewMatchers.withParentIndex;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
+
+import androidx.annotation.NonNull;
 import androidx.test.espresso.NoMatchingViewException;
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.espresso.contrib.RecyclerViewActions;
 
 public class AlbumsUtils {
 
+    public static String ALBUM_NAME = "Poeta del pueblo";
     public static ViewInteraction verBtnAlbums() {
         return onView(allOf(withId(R.id.albumesButton), withText(R.string.boton_menu_albums), isDisplayed()));
     }
@@ -30,7 +33,7 @@ public class AlbumsUtils {
         return onView(allOf(withId(R.id.backIcon), isDisplayed()));
     }
 
-    public static void clickBtn(ViewInteraction btn) {
+    public static void clickBtn(@NonNull ViewInteraction btn) {
         btn.perform(click());
     }
 
@@ -87,5 +90,55 @@ public class AlbumsUtils {
     public static void seleccionarAlbumPosicion(int position) {
         onView(withId(R.id.albumsRv))
                 .perform(RecyclerViewActions.actionOnItemAtPosition(position, click()));
+    }
+
+    public static void clickToViewTrackButton() {
+        onView(withId(R.id.verTracks)).perform(click());
+    }
+
+    public static void clickToAddTrackButton() {
+        onView(withId(R.id.agregarTrack)).perform(click());
+    }
+
+    public static void addTrackName(String trackName) {
+        onView(withId(R.id.nameTrack)).perform(replaceText(trackName), closeSoftKeyboard());
+    }
+
+    public static void addTrackDuration(String trackDuration) {
+        onView(withId(R.id.trackDuration)).perform(replaceText(trackDuration), closeSoftKeyboard());
+    }
+
+    public static void clickToSaveTrackButton() {
+        onView(withId(R.id.agregarTrack)).perform(click());
+    }
+
+    public static void clickToBackButtonTrack() {
+        onView(withId(R.id.btnCancelar)).perform(click());
+    }
+
+    public static boolean isTrackAdded(String trackName) {
+        try {
+            onView(allOf(withId(R.id.trackName), withText(trackName))).check(matches(isDisplayed()));
+            return true;
+        } catch (NoMatchingViewException e) {
+            return false;
+        }
+    }
+
+    public static boolean isInView(@NonNull int viewId) {
+        try {
+            onView(withId(viewId)).check(matches(isDisplayed()));
+            return true;
+        } catch (NoMatchingViewException e) {
+            return false;
+        }
+    }
+
+    public static void waitFor(long millis) {
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
     }
 }

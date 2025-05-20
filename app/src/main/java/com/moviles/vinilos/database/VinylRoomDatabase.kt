@@ -4,11 +4,14 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.moviles.vinilos.models.Album
 import com.moviles.vinilos.models.Artist
 import com.moviles.vinilos.models.Collector
+import com.moviles.vinilos.models.Track
 
-@Database(entities = [Album::class, Artist::class, Collector::class], version = 1, exportSchema = false)
+@Database(entities = [Album::class, Artist::class, Collector::class, Track::class], version = 1, exportSchema = false)
+@TypeConverters(Converters::class)
 abstract class VinylRoomDatabase : RoomDatabase() {
     abstract fun albumsDao(): AlbumsDao
     abstract fun artistsDao(): ArtistsDao
