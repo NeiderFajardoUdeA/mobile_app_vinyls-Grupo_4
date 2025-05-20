@@ -28,6 +28,10 @@
         <action
             android:id="@+id/action_albumFragment_to_albumDetailFragment"
             app:destination="@id/albumDetailFragment" />
+
+        <action
+            android:id="@+id/action_albumFragment_to_albumCreateFragment"
+            app:destination="@id/createAlbumFragment" />
     </fragment>
 
     <fragment
@@ -43,6 +47,15 @@
         <action
             android:id="@+id/action_albumDetailFragment_to_trackFragment"
             app:destination="@id/albumTracksFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/createAlbumFragment"
+        android:name="com.moviles.vinilos.ui.CreateAlbumFragment"
+        android:label="Crear album" >
+        <action
+            android:id="@+id/action_createAlbumFragment_to_albumFragment"
+            app:destination="@id/albumFragment" />
     </fragment>
 
     <fragment

@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -33,10 +32,21 @@ class AlbumFragment : Fragment(), OnAlbumClickListener {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        //RecyclerView
+        super.onViewCreated(view, savedInstanceState)
+
+        // RecyclerView
         binding.albumsRv.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = viewModelAdapter
+        }
+
+        //Escuchar cambios desde el fragmento de creación
+        val savedStateHandle = findNavController().currentBackStackEntry?.savedStateHandle
+        savedStateHandle?.getLiveData<Boolean>("albumCreated")?.observe(viewLifecycleOwner) { created ->
+            if (created == true) {
+                viewModel.refreshDataFromNetwork()
+                savedStateHandle.remove<Boolean>("albumCreated")
+            }
         }
 
         //Listener para búsqueda
@@ -45,10 +55,15 @@ class AlbumFragment : Fragment(), OnAlbumClickListener {
             viewModel.searchAlbums(query)
         }
 
-        binding.menuIcon.setOnClickListener{
+        binding.menuIcon.setOnClickListener {
             findNavController().navigate(R.id.action_albumFragment_to_homeFragment)
         }
+
+        binding.addIcon.setOnClickListener {
+            findNavController().navigate(R.id.action_albumFragment_to_albumCreateFragment)
+        }
     }
+
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
