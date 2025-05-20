@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.*
 import com.moviles.vinilos.database.VinylRoomDatabase
 import com.moviles.vinilos.models.Album
+import com.moviles.vinilos.models.Track
 import com.moviles.vinilos.repositories.AlbumRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -84,6 +85,18 @@ class AlbumViewModel(application: Application) : AndroidViewModel(application) {
 
     fun onNetworkErrorShown() {
         _isNetworkErrorShown.value = true
+    }
+
+    // Function to add a new track to an album
+    fun addTrackToAlbum(albumId: Int, trackName: String, trackDuration: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val album = _albums.value?.find { it.albumId == albumId }
+            if (album != null) {
+                val newTrack = Track(name = trackName, duration = trackDuration)
+                album.tracks.add(newTrack)
+                albumsRepository.addTrackToAlbum(albumId, newTrack)
+            }
+        }
     }
 
     class Factory(val app: Application) : ViewModelProvider.Factory {
