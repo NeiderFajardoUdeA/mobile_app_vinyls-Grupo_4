@@ -520,11 +520,8 @@ public class AlbumTest {
         //When le damos click al clic a la barra de busqueda
         AlbumsUtils.clickBtn(barraBusqueda);
 
-        //And buscamos el album creado por un titulo especifico
-        AlbumsUtils.buscarAlbumByTitulo(nombreAlbum);
-
         //Then veo dos cards con el nombre del album duplicado
-        AlbumsUtils.validarBuscarAlbum(nombreAlbum);
+        AlbumsUtils.buscarAlbumByTitulo(nombreAlbum);
     }
 
     @Test

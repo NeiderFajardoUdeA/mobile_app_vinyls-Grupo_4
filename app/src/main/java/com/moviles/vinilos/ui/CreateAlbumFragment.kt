@@ -51,8 +51,11 @@ class CreateAlbumFragment: Fragment() {
             if (created == true) {
                 Toast.makeText(requireContext(), "Álbum creado correctamente", Toast.LENGTH_SHORT).show()
 
+                //Notificar al fragmento anterior que debe recargar
+                findNavController().previousBackStackEntry?.savedStateHandle?.set("albumCreated", true)
+
                 //Limpiar back stack y navegar al fragmento principal
-                findNavController().popBackStack(R.id.albumFragment, false)
+                findNavController().popBackStack()
 
                 //Cambiamos estado de album created
                 viewModel?.resetAlbumCreated()

@@ -1,7 +1,6 @@
 package com.moviles.vinilos.viewmodels
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.*
 import com.moviles.vinilos.database.VinylRoomDatabase
 import com.moviles.vinilos.models.Album
@@ -39,7 +38,7 @@ class AlbumViewModel(application: Application) : AndroidViewModel(application) {
         refreshDataFromNetwork()
     }
 
-    private fun refreshDataFromNetwork() {
+    fun refreshDataFromNetwork() {
         try {
             viewModelScope.launch(Dispatchers.Default){
                 withContext(Dispatchers.IO){
