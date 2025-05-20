@@ -54,7 +54,7 @@ class AlbumServiceAdapter(context: Context) {
     }
 
     suspend fun createAlbum(body: JSONObject): JSONObject = suspendCoroutine { cont ->
-        val request = postRequest(
+        val request = postrequest(
             "albums",
             body,
             { response ->
@@ -65,6 +65,8 @@ class AlbumServiceAdapter(context: Context) {
             }
         )
         requestQueue.add(request)
+    }
+
     suspend fun addTrack(albumId: Int, track: Track) = suspendCoroutine<Unit> { cont ->
         val body = "{ \"name\": \"${track.name}\", \"duration\": \"${track.duration}\" }"
         try {
@@ -86,6 +88,10 @@ class AlbumServiceAdapter(context: Context) {
 
     private fun getRequest(path:String, responseListener: Response.Listener<String>, errorListener: Response.ErrorListener): StringRequest {
         return StringRequest(Request.Method.GET, Config.BASE_URL+path, responseListener,errorListener)
+    }
+
+    private fun postrequest(path: String, body: JSONObject,  responseListener: Response.Listener<JSONObject>, errorListener: Response.ErrorListener ):JsonObjectRequest{
+        return  JsonObjectRequest(Request.Method.POST, Config.BASE_URL+path, body, responseListener, errorListener)
     }
 
     private fun postRequest(path:String, body:String, responseListener: Response.Listener<String>, errorListener: Response.ErrorListener): StringRequest {
