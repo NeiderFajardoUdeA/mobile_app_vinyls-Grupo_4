@@ -18,7 +18,6 @@
     <string name="descripcion">Descripción</string>
     <string name="genero">Género</string>
     <string name="etiqueta_del_album">Etiqueta del álbum</string>
-    <string name="cancelar">Cancelar</string>
     <string name="tracks">Ver Tracks</string>
     <string name="newtrack">Agregar Track</string>
     <string name="title_tracks">Tracks</string>

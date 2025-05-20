@@ -39,6 +39,9 @@ class AlbumRepository (val application: Application, private val albumsDao: Albu
             album
         } catch (e: Exception) {
             null
+        }
+    }
+
     suspend fun addTrackToAlbum(albumId: Int, track: Track): Unit {
         val cm = application.baseContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         if (cm.activeNetworkInfo?.isConnected == true) {
