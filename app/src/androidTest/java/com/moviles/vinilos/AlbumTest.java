@@ -297,8 +297,8 @@ public class AlbumTest {
         String coverAlbum = "https://cdn.venngage.com/template/thumbnail/small/79879260-0211-46bb-abcd-968fb4e2c0ea.webp";
         String releaseDate = "2022-12-18";
         String description = "Descripcion album 1";
-        String genre = "metal";
-        String recordLabel = "Etiqueta Album 1";
+        String genre = "Salsa";
+        String recordLabel = "Sony Music";
 
         //And llena el formulario
         AlbumsUtils.llenarFormulario(nombreAlbum, coverAlbum, releaseDate, description,
@@ -350,8 +350,8 @@ public class AlbumTest {
         String coverAlbum = "https://cdn.venngage.com/template/thumbnail/small/79879260-0211-46bb-abcd-968fb4e2c0ea.webp";
         String releaseDate = "2022-12-18";
         String description = "Descripcion album 2";
-        String genre = "metal";
-        String recordLabel = "Etiqueta Album 2";
+        String genre = "Salsa";
+        String recordLabel = "Sony Music";
 
         //And llena el formulario
         AlbumsUtils.llenarFormulario(nombreAlbum, coverAlbum, releaseDate, description,
@@ -412,8 +412,8 @@ public class AlbumTest {
         String coverAlbum = "https://cdn.venngage.com/template/thumbnail/small/79879260-0211-46bb-abcd-968fb4e2c0ea.webp";
         String releaseDate = "2022-12-18";
         String description = "Descripcion album 3";
-        String genre = "metal";
-        String recordLabel = "Etiqueta Album 3";
+        String genre = "Salsa";
+        String recordLabel = "Sony Music";
 
         //And llena el formulario
         AlbumsUtils.llenarFormulario(nombreAlbum, coverAlbum, releaseDate, description,
@@ -471,8 +471,8 @@ public class AlbumTest {
         String coverAlbum = "https://cdn.venngage.com/template/thumbnail/small/79879260-0211-46bb-abcd-968fb4e2c0ea.webp";
         String releaseDate = "2022-12-18";
         String description = "Descripcion album 5";
-        String genre = "metal";
-        String recordLabel = "Etiqueta Album 5";
+        String genre = "Salsa";
+        String recordLabel = "Sony Music";
 
         //And llena el formulario
         AlbumsUtils.llenarFormulario(nombreAlbum, coverAlbum, releaseDate, description,
@@ -556,8 +556,8 @@ public class AlbumTest {
         String coverAlbum = "https://cdn.venngage.com/template/thumbnail/small/79879260-0211-46bb-abcd-968fb4e2c0ea.webp";
         String releaseDate = "2022-12-18";
         String description = "Descripcion album 4";
-        String genre = "metal";
-        String recordLabel = "Etiqueta Album 4";
+        String genre = "Salsa";
+        String recordLabel = "Sony Music";
 
         //And llena el formulario
         AlbumsUtils.llenarFormulario(nombreAlbum, coverAlbum, releaseDate, description,
