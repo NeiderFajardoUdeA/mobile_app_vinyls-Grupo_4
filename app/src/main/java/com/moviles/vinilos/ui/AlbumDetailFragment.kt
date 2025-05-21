@@ -13,6 +13,7 @@ import android.widget.ImageView
 import com.moviles.vinilos.viewmodels.AlbumViewModel
 import com.moviles.vinilos.R
 import androidx.navigation.fragment.findNavController
+import com.moviles.vinilos.models.Track
 
 class AlbumDetailFragment : Fragment() {
     private var _binding: AlbumDetailBinding? = null
@@ -32,7 +33,10 @@ class AlbumDetailFragment : Fragment() {
         val activity = requireNotNull(this.activity) {
             "You can only access the viewModel after onActivityCreated()"
         }
-        viewModel = ViewModelProvider(activity, AlbumViewModel.Factory(activity.application))[AlbumViewModel::class.java]
+        viewModel = ViewModelProvider(
+            activity,
+            AlbumViewModel.Factory(activity.application)
+        )[AlbumViewModel::class.java]
         // Observa los cambios en los álbumes
         viewModel!!.albums.observe(viewLifecycleOwner) { albumList ->
             val args: AlbumDetailFragmentArgs by navArgs()
@@ -42,6 +46,11 @@ class AlbumDetailFragment : Fragment() {
                 binding.album = it
                 binding.albumReleaseYear.text = it.releaseDate.substring(0, 4)
             }
+            // Esto es solo para probar que funciona
+            //if (album != null) {
+            //    viewModel!!.addTrackToAlbum(
+            //        album.albumId, "track 1", "3:00")
+            // }
         }
         val volverButton = view.findViewById<Button>(R.id.volverButton)
         volverButton.setOnClickListener {
@@ -51,8 +60,14 @@ class AlbumDetailFragment : Fragment() {
         volverIcon.setOnClickListener {
             findNavController().navigate(R.id.action_albumDetailFragment_to_albumFragment)
         }
+        val verTracksButton = view.findViewById<Button>(R.id.verTracks)
+        verTracksButton.setOnClickListener {
+            val args: AlbumDetailFragmentArgs by navArgs()
+            val albumId = args.albumId
+            val action = AlbumDetailFragmentDirections.actionAlbumDetailFragmentToTrackFragment(albumId)
+            findNavController().navigate(action)
         }
-
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

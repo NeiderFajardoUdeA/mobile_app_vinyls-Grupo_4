@@ -4,10 +4,13 @@ import android.app.Application
 import androidx.lifecycle.*
 import com.moviles.vinilos.database.VinylRoomDatabase
 import com.moviles.vinilos.models.Album
+import com.moviles.vinilos.models.Track
 import com.moviles.vinilos.repositories.AlbumRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import androidx.lifecycle.viewModelScope
+import org.json.JSONObject
 
 class AlbumViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -29,11 +32,14 @@ class AlbumViewModel(application: Application) : AndroidViewModel(application) {
     val isNetworkErrorShown: LiveData<Boolean>
         get() = _isNetworkErrorShown
 
+    private val _albumCreated = MutableLiveData<Boolean?>()
+    val albumCreated: MutableLiveData<Boolean?> = _albumCreated
+
     init {
         refreshDataFromNetwork()
     }
 
-    private fun refreshDataFromNetwork() {
+    fun refreshDataFromNetwork() {
         try {
             viewModelScope.launch(Dispatchers.Default){
                 withContext(Dispatchers.IO){
@@ -61,8 +67,36 @@ class AlbumViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    fun createAlbum(postParams: Map<String, String>) {
+        viewModelScope.launch {
+            try {
+                val json = JSONObject(postParams)
+                albumsRepository.createAlbum(json)
+                _albumCreated.postValue(true)
+            } catch (e: Exception) {
+                _albumCreated.postValue(false)
+            }
+        }
+    }
+
+    fun resetAlbumCreated() {
+        _albumCreated.value = null
+    }
+
     fun onNetworkErrorShown() {
         _isNetworkErrorShown.value = true
+    }
+
+    // Function to add a new track to an album
+    fun addTrackToAlbum(albumId: Int, trackName: String, trackDuration: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val album = _albums.value?.find { it.albumId == albumId }
+            if (album != null) {
+                val newTrack = Track(name = trackName, duration = trackDuration)
+                album.tracks.add(newTrack)
+                albumsRepository.addTrackToAlbum(albumId, newTrack)
+            }
+        }
     }
 
     class Factory(val app: Application) : ViewModelProvider.Factory {

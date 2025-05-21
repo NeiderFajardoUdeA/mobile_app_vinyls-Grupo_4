@@ -117,7 +117,19 @@
                     android:paddingEnd="16dp"/>
             </androidx.cardview.widget.CardView>
 
-
+                <Button
+                    android:id="@+id/verTracks"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="25dp"
+                    android:text="@string/tracks"
+                    android:textColor="#FFFFFF"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    android:backgroundTint="#EDC967"
+                    android:fontFamily="sans-serif"
+                    app:layout_constraintWidth_percent="0.8"/>
                 <Button
                     android:id="@+id/volverButton"
                     android:layout_width="wrap_content"
