@@ -1,4 +1,5 @@
 package com.moviles.vinilos.models
+
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 

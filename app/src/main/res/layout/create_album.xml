@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="24dp"
-    android:background="#FAFAFA"
     tools:context=".ui.CreateAlbumFragment">
 
     <RelativeLayout
@@ -15,7 +14,6 @@
         android:layout_marginBottom="24dp">
 
         <TextView
-            android:id="@+id/createAlbumTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/create_album"
