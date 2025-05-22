@@ -31,7 +31,6 @@ public class TrackTest {
         //And async wait for data load
         AlbumsUtils.waitFor(5000);
         AlbumsUtils.seleccionarAlbumNombre(AlbumsUtils.ALBUM_NAME);
-        AlbumsUtils.waitFor(5000);
         // click to add track button
         AlbumsUtils.clickToViewTrackButton();
         // Click to Add Track
@@ -44,6 +43,7 @@ public class TrackTest {
         // And click to save
         AlbumsUtils.clickToSaveTrackButton();
         // Then validate track added
+        AlbumsUtils.waitFor(2000);
         var isTrackAdded = AlbumsUtils.isTrackAdded(trackName);
         assertTrue("Track not added", isTrackAdded);
     }
@@ -85,7 +85,6 @@ public class TrackTest {
         //And async wait for data load
         AlbumsUtils.waitFor(5000);
         AlbumsUtils.seleccionarAlbumNombre(AlbumsUtils.ALBUM_NAME);
-        AlbumsUtils.waitFor(5000);
         // click to add track button
         AlbumsUtils.clickToViewTrackButton();
         // Click to Add Track
@@ -111,7 +110,6 @@ public class TrackTest {
         //And async wait for data load
         AlbumsUtils.waitFor(5000);
         AlbumsUtils.seleccionarAlbumNombre(AlbumsUtils.ALBUM_NAME);
-        AlbumsUtils.waitFor(5000);
         // click to add track button
         AlbumsUtils.clickToViewTrackButton();
         // Click to Add Track
