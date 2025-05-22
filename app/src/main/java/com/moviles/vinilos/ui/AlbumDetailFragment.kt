@@ -13,7 +13,6 @@ import android.widget.ImageView
 import com.moviles.vinilos.viewmodels.AlbumViewModel
 import com.moviles.vinilos.R
 import androidx.navigation.fragment.findNavController
-import com.moviles.vinilos.models.Track
 
 class AlbumDetailFragment : Fragment() {
     private var _binding: AlbumDetailBinding? = null

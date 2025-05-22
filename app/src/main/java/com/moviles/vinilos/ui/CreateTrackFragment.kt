@@ -17,8 +17,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import android.widget.TextView
 
-
-
 class CreateTrackFragment: Fragment() {
     private var _binding: CreateTrackBinding? = null
     private val binding get() = _binding!!
