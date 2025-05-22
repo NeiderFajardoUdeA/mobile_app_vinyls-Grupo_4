@@ -4,6 +4,7 @@ import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.replaceText;
+import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.hasDescendant;
@@ -14,11 +15,12 @@ import static androidx.test.espresso.matcher.ViewMatchers.withParent;
 import static androidx.test.espresso.matcher.ViewMatchers.withParentIndex;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
-
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.test.espresso.NoMatchingViewException;
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.espresso.contrib.RecyclerViewActions;
+
 
 public class AlbumsUtils {
 
@@ -130,7 +132,7 @@ public class AlbumsUtils {
     }
 
     public static void clickToAddTrackButton() {
-        onView(withId(R.id.agregarTrack)).perform(click());
+        onView(withId(R.id.agregarTrack)).perform(scrollTo(), click());
     }
 
     public static void addTrackName(String trackName) {
@@ -151,11 +153,26 @@ public class AlbumsUtils {
 
     public static boolean isTrackAdded(String trackName) {
         try {
+            waitFor(2000);
+            scrollToBottom(R.id.tracksRV);
             onView(allOf(withId(R.id.trackName), withText(trackName))).check(matches(isDisplayed()));
             return true;
         } catch (NoMatchingViewException e) {
             return false;
         }
+    }
+
+    public static void scrollToBottom(int recyclerViewId) {
+        onView(withId(recyclerViewId)).perform(RecyclerViewActions.scrollToPosition(getRecyclerViewItemCount(recyclerViewId) - 1));
+    }
+
+    private static int getRecyclerViewItemCount(int recyclerViewId) {
+        final int[] itemCount = {0};
+        onView(withId(recyclerViewId)).check((view, noViewFoundException) -> {
+            RecyclerView recyclerView = (RecyclerView) view;
+            itemCount[0] = recyclerView.getAdapter().getItemCount();
+        });
+        return itemCount[0];
     }
 
     public static boolean isInView(@NonNull int viewId) {
