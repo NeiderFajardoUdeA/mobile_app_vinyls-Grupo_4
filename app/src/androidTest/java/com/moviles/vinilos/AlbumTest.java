@@ -122,7 +122,7 @@ public class AlbumTest {
         AlbumsUtils.clickBtn(barraBusqueda);
 
         //When buscamos un album por un titulo especifico
-        String titulo = "Mi angel";
+        String titulo = "Poeta del pueblo";
         AlbumsUtils.buscarAlbumByTitulo(titulo);
 
         //Espera asincrona para la carga de datos
@@ -293,7 +293,7 @@ public class AlbumTest {
         AlbumsUtils.clickBtn(createBtn);
 
         //And llenamos el formulario
-        String nombreAlbum = "Album 1";
+        String nombreAlbum = "Album creado 1";
         String coverAlbum = "https://cdn.venngage.com/template/thumbnail/small/79879260-0211-46bb-abcd-968fb4e2c0ea.webp";
         String releaseDate = "2022-12-18";
         String description = "Descripcion album 1";
@@ -346,7 +346,7 @@ public class AlbumTest {
         AlbumsUtils.clickBtn(createBtn);
 
         //And llenamos el formulario
-        String nombreAlbum = "Album 2";
+        String nombreAlbum = "Album creado 2";
         String coverAlbum = "https://cdn.venngage.com/template/thumbnail/small/79879260-0211-46bb-abcd-968fb4e2c0ea.webp";
         String releaseDate = "2022-12-18";
         String description = "Descripcion album 2";
@@ -408,7 +408,7 @@ public class AlbumTest {
         AlbumsUtils.clickBtn(createBtn);
 
         //And llenamos el formulario
-        String nombreAlbum = "Album 3";
+        String nombreAlbum = "Album creado 3";
         String coverAlbum = "https://cdn.venngage.com/template/thumbnail/small/79879260-0211-46bb-abcd-968fb4e2c0ea.webp";
         String releaseDate = "2022-12-18";
         String description = "Descripcion album 3";
@@ -467,7 +467,7 @@ public class AlbumTest {
         AlbumsUtils.clickBtn(createBtn);
 
         //And llenamos el formulario
-        String nombreAlbum = "AAAAAAlbum 6";
+        String nombreAlbum = "AAAAAAlbum creado 10";
         String coverAlbum = "https://cdn.venngage.com/template/thumbnail/small/79879260-0211-46bb-abcd-968fb4e2c0ea.webp";
         String releaseDate = "2022-12-18";
         String description = "Descripcion album 5";
@@ -549,7 +549,7 @@ public class AlbumTest {
         AlbumsUtils.clickBtn(createBtn);
 
         //And llenamos el formulario
-        String nombreAlbum = "AAAAAAlbum 4";
+        String nombreAlbum = "AAAAAAlbum creado 4";
         String coverAlbum = "https://cdn.venngage.com/template/thumbnail/small/79879260-0211-46bb-abcd-968fb4e2c0ea.webp";
         String releaseDate = "2022-12-18";
         String description = "Descripcion album 4";
