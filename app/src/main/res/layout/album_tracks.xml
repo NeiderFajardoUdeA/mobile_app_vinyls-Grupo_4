@@ -30,11 +30,12 @@
 
                     <ImageView
                         android:id="@+id/backIcon"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
                         android:src="@drawable/ic_back"
                         android:layout_alignParentStart="true"
-                        android:layout_centerVertical="true" />
+                        android:layout_centerVertical="true"
+                        android:contentDescription="@string/back_description"/>
 
                     <TextView
                         android:text="@{album.name}"
@@ -45,7 +46,7 @@
                         android:textStyle="bold"
                         android:layout_centerInParent="true"
                         android:layout_margin="16dp"
-                        android:textColor="#D6C22F" />
+                        android:textColor="#383B53" />
                 </RelativeLayout>
 
 
@@ -68,7 +69,7 @@
                         android:layout_width="200dp"
                         android:layout_height="200dp"
                         android:scaleType="centerCrop"
-                        android:contentDescription="@{album.name}"
+                        android:contentDescription="Portada del album @{album.name}"
                         />
 
                     <TextView
@@ -96,7 +97,7 @@
                     android:textSize="24sp"
                     android:textStyle="bold"
                     android:layout_margin="8dp"
-                    android:textColor="#D6C22F"
+                    android:textColor="#383B53"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"/>
 
@@ -112,14 +113,14 @@
                 <Button
                     android:id="@+id/agregarTrack"
                     android:layout_width="wrap_content"
-                    android:layout_height="60dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="25dp"
                     android:text="@string/newtrack"
                     android:textColor="#FFFFFF"
                     android:textSize="24sp"
                     android:textStyle="bold"
                     android:layout_gravity="center"
-                    android:backgroundTint="#EDC967"
+                    android:backgroundTint="#383B53"
                     android:fontFamily="sans-serif"
                     app:layout_constraintTop_toBottomOf="@id/tracksRV"
                     app:layout_constraintStart_toStartOf="parent"
@@ -127,14 +128,14 @@
                 <Button
                     android:id="@+id/volverButton"
                     android:layout_width="wrap_content"
-                    android:layout_height="60dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="25dp"
                     android:text="@string/volver"
                     android:textColor="#FFFFFF"
                     android:textSize="24sp"
                     android:textStyle="bold"
                     android:layout_gravity="center"
-                    android:backgroundTint="#EDC967"
+                    android:backgroundTint="#383B53"
                     android:fontFamily="sans-serif"
                     app:layout_constraintWidth_percent="0.8"/>
             </LinearLayout>

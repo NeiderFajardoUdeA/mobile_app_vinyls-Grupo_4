@@ -53,7 +53,8 @@ android:padding="24dp">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/nameTrack"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:textColor="#212121"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -71,7 +72,8 @@ android:padding="24dp">
                 android:id="@+id/trackDuration"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textUri"/>
+                android:inputType="textUri"
+                android:textColor="#212121"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
@@ -81,7 +83,7 @@ android:padding="24dp">
             android:text="@string/save_track"
             android:textAllCaps="true"
             android:textStyle="bold"
-            android:backgroundTint="#F2C94C"
+            android:backgroundTint="#383B53"
             android:textColor="#FFFFFF"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="8dp"
@@ -95,7 +97,7 @@ android:padding="24dp">
             android:text="@string/cancelar"
             android:textAllCaps="true"
             android:textStyle="bold"
-            android:backgroundTint="#F2C94C"
+            android:backgroundTint="#383B53"
             android:textColor="#FFFFFF"
             android:layout_marginBottom="16dp"
             android:padding="12dp"

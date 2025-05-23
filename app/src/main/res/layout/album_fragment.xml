@@ -24,20 +24,22 @@
 
         <ImageView
             android:id="@+id/menuIcon"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:src="@drawable/ic_menu"
             android:layout_alignParentStart="true"
-            android:layout_centerVertical="true" />
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/back_description"/>
 
         <ImageView
             android:id="@+id/addIcon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:background="@drawable/rounded_style"
             android:src="@drawable/ic_add"
             android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true" />
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/create_album_description"/>
 
     </RelativeLayout>
 
@@ -51,15 +53,16 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/searchBar"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         app:cardCornerRadius="24dp"
         app:cardElevation="4dp"
-        android:backgroundTint="#F2EDF7">
+        android:backgroundTint="#66717E">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="50dp"
             android:orientation="horizontal"
             android:gravity="center_vertical"
             android:paddingHorizontal="16dp">
@@ -68,13 +71,13 @@
                 android:id="@+id/searchInput"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:minHeight="48dp"
                 android:layout_weight="1"
+                android:background="#66717E"
                 android:hint="@string/hinted_search_text_album"
-                android:background="@android:color/transparent"
-                android:paddingHorizontal="8dp"
-                android:textColorHint="#999999"
+                android:inputType="text"
                 android:textColor="#000000"
-                android:inputType="text" />
+                android:textColorHint="#FFF" />
 
             <ImageView
                 android:layout_width="24dp"

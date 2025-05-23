@@ -54,7 +54,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:hint="@string/nombre_album"
+                android:textColorHint="#32213A"
                 app:boxBackgroundColor="#FFFFFF"
+                app:boxStrokeColor="#6200EE"
                 app:boxCornerRadiusTopStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
                 app:boxCornerRadiusBottomStart="12dp"
@@ -62,7 +64,9 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/nameAlbum"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:textColorHint="#666666"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Repite esto para los otros campos -->
@@ -74,6 +78,7 @@
                 android:layout_marginBottom="16dp"
                 android:hint="@string/cover_album_url"
                 app:boxBackgroundColor="#FFFFFF"
+                android:textColorHint="#32213A"
                 app:boxCornerRadiusTopStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
                 app:boxCornerRadiusBottomStart="12dp"
@@ -92,6 +97,7 @@
                 android:layout_marginBottom="16dp"
                 android:hint="@string/fecha_de_lanzamiento"
                 app:boxBackgroundColor="#FFFFFF"
+                android:textColorHint="#32213A"
                 app:boxCornerRadiusTopStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
                 app:boxCornerRadiusBottomStart="12dp"
@@ -110,6 +116,7 @@
                 android:layout_marginBottom="16dp"
                 android:hint="@string/descripcion"
                 app:boxBackgroundColor="#FFFFFF"
+                android:textColorHint="#32213A"
                 app:boxCornerRadiusTopStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
                 app:boxCornerRadiusBottomStart="12dp"
@@ -129,6 +136,7 @@
                 android:layout_marginBottom="16dp"
                 android:hint="@string/genero"
                 app:boxBackgroundColor="#FFFFFF"
+                android:textColorHint="#32213A"
                 app:boxCornerRadiusTopStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
                 app:boxCornerRadiusBottomStart="12dp"
@@ -146,6 +154,7 @@
                 android:layout_marginBottom="16dp"
                 android:hint="@string/etiqueta_del_album"
                 app:boxBackgroundColor="#FFFFFF"
+                android:textColorHint="#32213A"
                 app:boxCornerRadiusTopStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
                 app:boxCornerRadiusBottomStart="12dp"
@@ -163,12 +172,13 @@
                 android:text="@string/create_album"
                 android:textAllCaps="true"
                 android:textStyle="bold"
-                android:backgroundTint="#F2C94C"
+                android:backgroundTint="#32213A"
                 android:textColor="#FFFFFF"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="8dp"
                 android:padding="12dp"
-                android:elevation="2dp" />
+                android:elevation="2dp"
+                android:contentDescription="@string/create_album_description"/>
 
             <Button
                 android:id="@+id/btnCancelar"
@@ -177,7 +187,7 @@
                 android:text="@string/cancelar"
                 android:textAllCaps="true"
                 android:textStyle="bold"
-                android:backgroundTint="#F2C94C"
+                android:backgroundTint="#32213A"
                 android:textColor="#FFFFFF"
                 android:layout_marginBottom="16dp"
                 android:padding="12dp"
