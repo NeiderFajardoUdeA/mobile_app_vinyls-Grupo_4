@@ -26,4 +26,6 @@
     <string name="track_duration">Duración</string>
     <string name="cancelar">Cancelar</string>
     <string name="title_new_track">%1$s - Nuevo Track</string>
+    <string name="back_description">Botón atrás</string>
+    <string name="create_album_description">Botón para crear album </string>
 </resources>
