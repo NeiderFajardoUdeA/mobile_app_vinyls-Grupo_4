@@ -35,7 +35,7 @@ public class AlbumTest {
         //And da clic en el boton "Albumes"
         AlbumsUtils.clickBtn(albumesBtn);
 
-        //When da clic en el boton de menu
+        //And valida que el boton de menu este
         ViewInteraction menuBtn = AlbumsUtils.verBtnMenu();
 
         //And da clic en el boton "Menu"
@@ -122,7 +122,7 @@ public class AlbumTest {
         AlbumsUtils.clickBtn(barraBusqueda);
 
         //When buscamos un album por un titulo especifico
-        String titulo = "Mi angel";
+        String titulo = "Poeta del pueblo";
         AlbumsUtils.buscarAlbumByTitulo(titulo);
 
         //Espera asincrona para la carga de datos
@@ -265,6 +265,325 @@ public class AlbumTest {
         AlbumsUtils.seleccionarAlbumPosicion(1);
 
         //Then debo ver ahora el resumen del segundo album
+        AlbumsUtils.validarSubtituloResumen();
+    }
+
+    @Test
+    public void crearAlbumVistaAlbum() {
+        //Given que estoy en el home de la app
+        ViewInteraction albumesBtn = AlbumsUtils.verBtnAlbums();
+
+        //And da clic en el boton "Albumes"
+        AlbumsUtils.clickBtn(albumesBtn);
+
+        //And entra al listado de albumes ve el titulo de la vista
+        AlbumsUtils.validamosTituloVistaAlbumes();
+
+        //Espera asincrona para la carga de datos
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //And valida que este el boton de crear album
+        ViewInteraction createBtn = AlbumsUtils.verBtnCrear();
+
+        //And da clic en el boton de crear
+        AlbumsUtils.clickBtn(createBtn);
+
+        //And llenamos el formulario
+        String nombreAlbum = "Album creado 1";
+        String coverAlbum = "https://cdn.venngage.com/template/thumbnail/small/79879260-0211-46bb-abcd-968fb4e2c0ea.webp";
+        String releaseDate = "2022-12-18";
+        String description = "Descripcion album 1";
+        String genre = "Salsa";
+        String recordLabel = "Sony Music";
+
+        //And llena el formulario
+        AlbumsUtils.llenarFormulario(nombreAlbum, coverAlbum, releaseDate, description,
+                genre, recordLabel);
+
+        //And valida que este el boton de crear album en la vista album
+        ViewInteraction submitBtn = AlbumsUtils.verBtnSubmit();
+
+        //When da clic en el boton de submit
+        AlbumsUtils.clickBtn(submitBtn);
+
+        //Espera asincrona para la carga de datos
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //Then valido que estoy en el listado de albumes
+        AlbumsUtils.validamosTituloVistaAlbumes();
+    }
+
+    @Test
+    public void crearAlbumValidarCreacion() {
+        //Given que estoy en el home de la app
+        ViewInteraction albumesBtn = AlbumsUtils.verBtnAlbums();
+
+        //And da clic en el boton "Albumes"
+        AlbumsUtils.clickBtn(albumesBtn);
+
+        //And entra al listado de albumes ve el titulo de la vista
+        AlbumsUtils.validamosTituloVistaAlbumes();
+
+        //Espera asincrona para la carga de datos
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //And valida que este el boton de crear album
+        ViewInteraction createBtn = AlbumsUtils.verBtnCrear();
+
+        //And da clic en el boton de crear
+        AlbumsUtils.clickBtn(createBtn);
+
+        //And llenamos el formulario
+        String nombreAlbum = "Album creado 2";
+        String coverAlbum = "https://cdn.venngage.com/template/thumbnail/small/79879260-0211-46bb-abcd-968fb4e2c0ea.webp";
+        String releaseDate = "2022-12-18";
+        String description = "Descripcion album 2";
+        String genre = "Salsa";
+        String recordLabel = "Sony Music";
+
+        //And llena el formulario
+        AlbumsUtils.llenarFormulario(nombreAlbum, coverAlbum, releaseDate, description,
+                genre, recordLabel);
+
+        //And valida que este el boton de crear album en la vista album
+        ViewInteraction submitBtn = AlbumsUtils.verBtnSubmit();
+
+        //And da clic en el boton de submit
+        AlbumsUtils.clickBtn(submitBtn);
+
+        //Espera asincrona para la carga de datos
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //And vemos la barra de busqueda
+        ViewInteraction barraBusqueda = AlbumsUtils.verBarraBusqueda();
+
+        //When le damos click al clic a la barra de busqueda
+        AlbumsUtils.clickBtn(barraBusqueda);
+
+        //And buscamos el album creado por un titulo especifico
+        AlbumsUtils.buscarAlbumByTitulo(nombreAlbum);
+
+        //Then veo dos cards con el nombre del album duplicado
+        AlbumsUtils.validarBuscarAlbum(nombreAlbum);
+    }
+
+    @Test
+    public void crearAlbumVolverHome() {
+        //Given que estoy en el home de la app
+        ViewInteraction albumesBtn = AlbumsUtils.verBtnAlbums();
+
+        //And da clic en el boton "Albumes"
+        AlbumsUtils.clickBtn(albumesBtn);
+
+        //And entra al listado de albumes ve el titulo de la vista
+        AlbumsUtils.validamosTituloVistaAlbumes();
+
+        //Espera asincrona para la carga de datos
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //And valida que este el boton de crear album
+        ViewInteraction createBtn = AlbumsUtils.verBtnCrear();
+
+        //And da clic en el boton de crear
+        AlbumsUtils.clickBtn(createBtn);
+
+        //And llenamos el formulario
+        String nombreAlbum = "Album creado 3";
+        String coverAlbum = "https://cdn.venngage.com/template/thumbnail/small/79879260-0211-46bb-abcd-968fb4e2c0ea.webp";
+        String releaseDate = "2022-12-18";
+        String description = "Descripcion album 3";
+        String genre = "Salsa";
+        String recordLabel = "Sony Music";
+
+        //And llena el formulario
+        AlbumsUtils.llenarFormulario(nombreAlbum, coverAlbum, releaseDate, description,
+                genre, recordLabel);
+
+        //And valida que este el boton de crear album en la vista album
+        ViewInteraction submitBtn = AlbumsUtils.verBtnSubmit();
+
+        //And da clic en el boton de submit
+        AlbumsUtils.clickBtn(submitBtn);
+
+        //Espera asincrona para la carga de datos
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //And valida que el boton de menu este
+        ViewInteraction menuBtn = AlbumsUtils.verBtnMenu();
+
+        //When da clic en el boton "Menu"
+        AlbumsUtils.clickBtn(menuBtn);
+
+        //Then deberia verse el la imagen del home
+        AlbumsUtils.validamosImagenHome();
+    }
+
+    @Test
+    public void crearAlbumDuplicado() {
+        //Given que estoy en el home de la app
+        ViewInteraction albumesBtn = AlbumsUtils.verBtnAlbums();
+
+        //And da clic en el boton "Albumes"
+        AlbumsUtils.clickBtn(albumesBtn);
+
+        //And entra al listado de albumes ve el titulo de la vista
+        AlbumsUtils.validamosTituloVistaAlbumes();
+
+        //Espera asincrona para la carga de datos
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //And valida que este el boton de crear album
+        ViewInteraction createBtn = AlbumsUtils.verBtnCrear();
+
+        //And da clic en el boton de crear
+        AlbumsUtils.clickBtn(createBtn);
+
+        //And llenamos el formulario
+        String nombreAlbum = "AAAAAAlbum creado 10";
+        String coverAlbum = "https://cdn.venngage.com/template/thumbnail/small/79879260-0211-46bb-abcd-968fb4e2c0ea.webp";
+        String releaseDate = "2022-12-18";
+        String description = "Descripcion album 5";
+        String genre = "Salsa";
+        String recordLabel = "Sony Music";
+
+        //And llena el formulario
+        AlbumsUtils.llenarFormulario(nombreAlbum, coverAlbum, releaseDate, description,
+                genre, recordLabel);
+
+        //And valida que este el boton de crear album en la vista album
+        ViewInteraction submitBtn = AlbumsUtils.verBtnSubmit();
+
+        //And da clic en el boton de submit
+        AlbumsUtils.clickBtn(submitBtn);
+
+        //Espera asincrona para la carga de datos
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //And valida que este el boton de crear album
+        ViewInteraction createBtn2 = AlbumsUtils.verBtnCrear();
+
+        //And da clic en el boton de crear
+        AlbumsUtils.clickBtn(createBtn2);
+
+        //And llena el formulario de nuevo
+        AlbumsUtils.llenarFormulario(nombreAlbum, coverAlbum, releaseDate, description,
+                genre, recordLabel);
+
+        //And valida que este el boton de crear album en la vista album
+        ViewInteraction submitBtn2 = AlbumsUtils.verBtnSubmit();
+
+        //And da clic en el boton de submit
+        AlbumsUtils.clickBtn(submitBtn2);
+
+        //Espera asincrona para la carga de datos
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //And vemos la barra de busqueda
+        ViewInteraction barraBusqueda = AlbumsUtils.verBarraBusqueda();
+
+        //When le damos click al clic a la barra de busqueda
+        AlbumsUtils.clickBtn(barraBusqueda);
+
+        //Then veo dos cards con el nombre del album duplicado
+        AlbumsUtils.buscarAlbumByTitulo(nombreAlbum);
+    }
+
+    @Test
+    public void crearAlbumVerDetalle() {
+        //Given que estoy en el home de la app
+        ViewInteraction albumesBtn = AlbumsUtils.verBtnAlbums();
+
+        //And da clic en el boton "Albumes"
+        AlbumsUtils.clickBtn(albumesBtn);
+
+        //And entra al listado de albumes ve el titulo de la vista
+        AlbumsUtils.validamosTituloVistaAlbumes();
+
+        //Espera asincrona para la carga de datos
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //And valida que este el boton de crear album
+        ViewInteraction createBtn = AlbumsUtils.verBtnCrear();
+
+        //And da clic en el boton de crear
+        AlbumsUtils.clickBtn(createBtn);
+
+        //And llenamos el formulario
+        String nombreAlbum = "AAAAAAlbum creado 4";
+        String coverAlbum = "https://cdn.venngage.com/template/thumbnail/small/79879260-0211-46bb-abcd-968fb4e2c0ea.webp";
+        String releaseDate = "2022-12-18";
+        String description = "Descripcion album 4";
+        String genre = "Salsa";
+        String recordLabel = "Sony Music";
+
+        //And llena el formulario
+        AlbumsUtils.llenarFormulario(nombreAlbum, coverAlbum, releaseDate, description,
+                genre, recordLabel);
+
+        //And valida que este el boton de crear album en la vista album
+        ViewInteraction submitBtn = AlbumsUtils.verBtnSubmit();
+
+        //And da clic en el boton de submit
+        AlbumsUtils.clickBtn(submitBtn);
+
+        //An espera asincrona para la carga de datos
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //When presiono al album creado
+        AlbumsUtils.seleccionarAlbumPosicion(0);
+
+        //And espera asincrona para la carga de datos
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //Then debo ver un título con el nombre del album
         AlbumsUtils.validarSubtituloResumen();
     }
 }

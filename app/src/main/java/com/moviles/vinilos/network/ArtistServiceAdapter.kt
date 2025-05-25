@@ -7,6 +7,7 @@ import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.moviles.vinilos.models.Artist
+import com.moviles.vinilos.utils.Config
 import org.json.JSONArray
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
@@ -14,7 +15,6 @@ import kotlin.coroutines.suspendCoroutine
 
 class ArtistServiceAdapter(context: Context) {
     companion object{
-        const val BASE_URL= "https://backvynils-q6yc.onrender.com/"
         private var instance: ArtistServiceAdapter? = null
         fun getInstance(context: Context) =
             instance ?: synchronized(this) {
@@ -45,6 +45,6 @@ class ArtistServiceAdapter(context: Context) {
     }
 
     private fun getRequest(path:String, responseListener: Response.Listener<String>, errorListener: Response.ErrorListener): StringRequest {
-        return StringRequest(Request.Method.GET, BASE_URL+path, responseListener,errorListener)
+        return StringRequest(Request.Method.GET, Config.BASE_URL+path, responseListener,errorListener)
     }
 }

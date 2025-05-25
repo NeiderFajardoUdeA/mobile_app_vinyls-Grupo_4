@@ -1,4 +1,5 @@
 package com.moviles.vinilos.models
+
 import androidx.room.*
 
 @Entity(tableName = "albums_table")
@@ -9,5 +10,6 @@ data class Album (
     val releaseDate:String,
     val description:String,
     val genre:String,
-    val recordLabel:String
+    val recordLabel:String,
+    val tracks: MutableList<Track>
 )
